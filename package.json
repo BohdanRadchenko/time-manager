@@ -11,8 +11,7 @@
     "client:install": "cd client && yarn install",
     "client:build": "cd client && yarn run build",
     "server:install": "yarn install",
-    "dev": "concurrently \"yarn run server\" \"yarn run client\" ",
-    "heroku-postbuild": "cd client && yarn install --only=dev && yarn install && yarn run build"
+    "dev": "concurrently \"yarn run server\" \"yarn run client\" "
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
