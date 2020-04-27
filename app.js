@@ -30,7 +30,7 @@ app.use((req, res, next) => {
 app.use('/api/v1', require('./routes/user.routes'))
 
 app.get('/', () => {
-    res.send('<h1> hello </h1>')
+    console.log('work')
 })
 
 // app.use('/', express.static(path.join(__dirname, "client", "build")))
