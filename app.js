@@ -6,7 +6,7 @@ const config = require('config')
 const bodyParser = require("body-parser")
 
 const PORT = process.env.PORT || config.get("port") || 5000
-const MONGODB_URL = process.env.MONGODB_URL || config.get('mongoURL')
+const MONGODB_URI = process.env.MONGODB_URI || config.get('mongoURL')
 
 corsOptions = {
     origin: "https://ptm-book.herokuapp.com/",
@@ -34,7 +34,7 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"))
 })
 
-mongoose.connect(MONGODB_URL, {
+mongoose.connect(MONGODB_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true
