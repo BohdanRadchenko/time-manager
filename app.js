@@ -29,10 +29,14 @@ app.use((req, res, next) => {
 
 app.use('/api/v1', require('./routes/user.routes'))
 
-app.use('/', express.static(path.join(__dirname, "client", "build")))
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"))
+app.get('/', () => {
+    res.send('<h1> hello </h1>')
 })
+
+// app.use('/', express.static(path.join(__dirname, "client", "build")))
+// app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "client", "build", "index.html"))
+// })
 
 // mongoose.connect(MONGODB_URL, {
 //             useNewUrlParser: true,
