@@ -1,0 +1,47 @@
+/* open-sans-regular - latin */
+@font-face {
+  font-family: 'Georgia';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./assets/fonts/Georgia.eot'); /* IE9 Compat Modes */
+  src: local('Georgia Regular'),
+  local('Georgia-Regular'),
+  url('./assets/fonts/Georgia.woff') format('woff') /* Modern Browsers */
+}
+
+@font-face {
+  font-family: 'Georgia';
+  font-style: normal;
+  font-weight: 600;
+  src: url('./assets/fonts/Georgia-Bold.eot'); /* IE9 Compat Modes */
+  src: local('Georgia Bold'),
+  local('Georgia-Bold'),
+  url('./assets/fonts/Georgia-Bold.woff') format('woff') /* Modern Browsers */
+}
+
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: 'Georgia', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: inline-table;
+}
