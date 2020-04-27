@@ -5,6 +5,7 @@ const config = require('config')
 const bodyParser = require("body-parser")
 
 const PORT = process.env.PORT || config.get("port") || 5000
+const MONGO_DB = process.env.MONGODB_URL || config.get('mongoURL')
 
 const app = express()
 
@@ -27,7 +28,7 @@ app.get("*", (req, res) => {
 
 const start = async () => {
     try {
-        await mongoose.connect( process.env.MONGODB_URL || config.get('mongoURL'), {
+        await mongoose.connect( MONGO_DB, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true
