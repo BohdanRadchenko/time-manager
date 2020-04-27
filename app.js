@@ -15,7 +15,7 @@ corsOptions = {
 
 const app = express()
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.json({extended: true}));
@@ -29,14 +29,10 @@ app.use((req, res, next) => {
 
 app.use('/api/v1', require('./routes/user.routes'))
 
-app.get('/', () => {
-    console.log('work')
+app.use('/', express.static(path.join(__dirname, "client", "build")))
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"))
 })
-
-// app.use('/', express.static(path.join(__dirname, "client", "build")))
-// app.get("*", (req, res) => {
-//     res.sendFile(path.join(__dirname, "client", "build", "index.html"))
-// })
 
 // mongoose.connect(MONGODB_URL, {
 //             useNewUrlParser: true,
