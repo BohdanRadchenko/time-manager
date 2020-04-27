@@ -34,29 +34,29 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"))
 })
 
-mongoose.connect(MONGODB_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useCreateIndex: true
-        })
-        console.log(`MongoDB is Connected... ${MONGODB_URL}`);
-
-app.listen(PORT, () => console.log(`App hes been started on port ${PORT} ...`))
-
-
-// const start = async () => {
-//     try {
-//         await mongoose.connect(MONGODB_URL, {
+// mongoose.connect(MONGODB_URI, {
 //             useNewUrlParser: true,
 //             useUnifiedTopology: true,
 //             useCreateIndex: true
 //         })
-//         console.log(`MongoDB is Connected... ${MONGODB_URL}`);
-//         app.listen(PORT, () => console.log(`App hes been started on port ${PORT} ...`))
-//     } catch (e) {
-//         console.log('Server Error', e.message)
-//         process.exit(1)
-//     }
-// }
+//         console.log(`MongoDB is Connected... ${MONGODB_URI}`);
 //
-// start()
+// app.listen(PORT, () => console.log(`App hes been started on port ${PORT} ...`))
+
+
+const start = async () => {
+    try {
+        await mongoose.connect(MONGODB_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useCreateIndex: true
+        })
+        console.log(`MongoDB is Connected... ${MONGODB_URI}`);
+        app.listen(PORT, () => console.log(`App hes been started on port ${PORT} ...`))
+    } catch (e) {
+        console.log('Server Error', e.message)
+        process.exit(1)
+    }
+}
+
+start()
