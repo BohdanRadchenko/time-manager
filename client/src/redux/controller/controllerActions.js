@@ -1,19 +1,22 @@
-import { ActionType } from "../actionType";
-
-// OPEN MODAL
-export const modalOnOpen = () => ({
-  type: ActionType.HANDLE_MODAL_OPEN,
-  payload : true
-});
-
-// OPEN CLOSE
-export const modalOnClose = () => ({
-  type: ActionType.HANDLE_MODAL_CLOSE,
-  payload : false
-});
-
+import { ActionTypes } from "../actionTypes";
 
 //BURGER TOGGLE
 export const handlerBurger = () => ({
-  type: ActionType.HANDLE_BURGER_TOGGLE,
+  type: ActionTypes.HANDLE_BURGER_TOGGLE,
 });
+
+//BURGER TOGGLE
+export const loadingAction = () => ({
+  type: ActionTypes.LOADING,
+});
+
+//AUTH IN
+export const handleAuthIn = () => ({
+  type: ActionTypes.HANDLE_BURGER_TOGGLE,
+});
+
+//AUTH OUT
+export const handleAuthOut = () => ({
+  type: ActionTypes.HANDLE_BURGER_TOGGLE,
+});
+

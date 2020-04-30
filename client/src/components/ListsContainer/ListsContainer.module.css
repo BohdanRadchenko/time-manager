@@ -1,0 +1,11 @@
+.container {
+    width: 98%;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.listsContainer {
+    width: 16%;
+}

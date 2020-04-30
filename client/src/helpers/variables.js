@@ -1,0 +1,1 @@
+export const storageName = 'ptm-book.data';

@@ -1,0 +1,134 @@
+.container {
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    box-shadow: 0 0 59px 0 rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-between;
+}
+
+.decorSide {
+    position: relative;
+    width: 36%;
+    background-color: #01509f;
+}
+
+.decorSide::after {
+    content: '';
+    border: 10px solid #ffffff;
+    border-radius: 50%;
+    background-color: #01509f;
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+}
+
+.logicSide {
+    width: 64%;
+    color: #989898;
+}
+
+.form {
+    padding: 80px 0;
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 28px;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.input {
+    display: block;
+    border: 1px solid #989898;
+    width: 100%;
+    color: #000;
+    font-size: 18px;
+    line-height: 28px;
+    border-radius: 16px;
+    margin-bottom: 14px;
+    padding-left: 16px;
+}
+
+.input::placeholder {
+    color: #989898;
+    padding-left: 12px;
+}
+
+.radioLabel {
+    margin-bottom: 14px;
+}
+
+.buttonWrapper {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+}
+
+.submitButton,
+.navlink {
+    border-radius: 16px;
+    padding-left: 16px;
+    text-align: left;
+}
+
+.submitButton {
+    width: 56%;
+    border: none;
+    background-color: #01509f;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.submitButton:disabled {
+    background-color: #ccc;
+    cursor: unset;
+}
+
+.navlink {
+    width: 36%;
+    border: 1px solid #01509f;
+    color: #01509f;
+    text-decoration: none;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+    .container {
+        width: 100%;
+        height: 100vh;
+    }
+
+    .decorSide {
+        display: none;
+    }
+
+    .logicSide {
+        width: 100%;
+    }
+
+    .form {
+        width: 100%;
+        padding: 60px 30px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 940px) {
+    .form {
+        width: 80%;
+    }
+}
+
+
+
