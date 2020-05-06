@@ -30,7 +30,22 @@ const loadingReducer = (state = false, {type, payload}) => {
     }
 };
 
+//LOADING
+const createModalReducer = (state = false, {type, payload}) => {
+    switch (type) {
+        case ActionTypes.CREATE_MODAL_OPEN:
+            return true;
+
+        case ActionTypes.CREATE_MODAL_CLOSE:
+            return false;
+
+        default:
+            return state;
+    }
+};
+
 export default combineReducers({
     burgerHandler: burgerReducer,
-    loading: loadingReducer
+    loading: loadingReducer,
+    createModal : createModalReducer
 });

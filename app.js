@@ -4,7 +4,6 @@ const mongoose = require('mongoose')
 const cors = require('cors');
 const config = require('config')
 const bodyParser = require("body-parser")
-const User = require('./models/User')
 
 const PORT = process.env.PORT || config.get("port") || 5000
 const MONGODB_URI = process.env.MONGODB_URI || config.get('mongoURL')

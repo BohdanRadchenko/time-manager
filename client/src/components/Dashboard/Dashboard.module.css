@@ -1,6 +1,9 @@
 .container {
     width: 100%;
     height: 100vh;
+}
+
+.dashboardContainer {
     display: flex;
     justify-content: space-between;
     text-align: center;
@@ -9,7 +12,6 @@
 .popUpSide {
     transition: all .5s ease-in-out;
     width: 20%;
-    background-color: palegreen;
 }
 
 .popUpSideOff {
@@ -20,7 +22,6 @@
 .mainSide {
     transition: all .5s ease-in-out;
     width: 100%;
-    background-color: salmon;
 }
 
 .mainSideOff {

@@ -1,0 +1,28 @@
+.container {
+    width: 100%;
+    background-color: #026aa7;
+    padding: 6px 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.leftSide,
+.rightSide {
+    width: 40%;
+    display: flex;
+}
+
+.rightSide {
+    justify-content: flex-end;
+}
+
+.burgerButtonWrapper,
+.homeButtonWrapper,
+.addButtonWrapper,
+.bellIconWrapper,
+.infoIconWrapper,
+.profileButtonWrapper {
+    width: 32px;
+    height: 32px;
+    margin-right: 4px;
+}

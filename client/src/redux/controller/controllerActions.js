@@ -5,9 +5,14 @@ export const handlerBurger = () => ({
   type: ActionTypes.HANDLE_BURGER_TOGGLE,
 });
 
-//BURGER TOGGLE
-export const loadingAction = () => ({
-  type: ActionTypes.LOADING,
+//CREATE MODAL OPEN
+export const createModalOpen = () => ({
+  type: ActionTypes.CREATE_MODAL_OPEN,
+});
+
+//CREATE MODAL CLOSE
+export const createModalClose = () => ({
+  type: ActionTypes.CREATE_MODAL_CLOSE,
 });
 
 //AUTH IN

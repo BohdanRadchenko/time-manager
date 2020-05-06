@@ -1,0 +1,23 @@
+.container {
+    width: 100%;
+}
+
+.selectWrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.daySelectWrapper {
+    width: 100px;
+}
+
+
+.TimeSelectWrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.HourSelectWrapper,
+.MinutSelectWrapper {
+    width: 100px;
+}

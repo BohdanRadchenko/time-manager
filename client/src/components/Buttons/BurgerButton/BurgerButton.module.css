@@ -1,0 +1,68 @@
+.container {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.burgerButton {
+    outline: none;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    background-color: hsla(0,0%,100%,.4);
+}
+
+.burgerButton:hover  {
+    background-color: hsla(0,0%,100%,.2);
+}
+
+.burgerLineOpen{
+    position: absolute;
+    /*top: 25%;*/
+    top: 32%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: 2px;
+    border: none;
+    background-color: #fff;
+    transition: .5s all;
+}
+
+.burgerLineClose {
+    composes: burgerLineOpen;
+}
+
+/*OPEN*/
+.burgerLineOpen:nth-child(2),
+.burgerLineOpen:nth-child(3) {
+    top: 50%;
+}
+
+.burgerLineOpen:nth-child(4) {
+    top: 68%;
+}
+
+/*CLOSE*/
+.burgerLineClose:nth-child(1),
+.burgerLineClose:nth-child(4) {
+    display: none;
+}
+
+.burgerLineClose:nth-child(2),
+.burgerLineClose:nth-child(3) {
+    width: 60%;
+    top: 50%;
+    left: 50%;
+    transition: all .5s ease-in-out;
+    transform-origin: center;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.burgerLineClose:nth-child(3) {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
