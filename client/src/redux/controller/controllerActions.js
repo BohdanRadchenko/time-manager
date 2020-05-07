@@ -5,14 +5,24 @@ export const handlerBurger = () => ({
   type: ActionTypes.HANDLE_BURGER_TOGGLE,
 });
 
-//CREATE MODAL OPEN
-export const createModalOpen = () => ({
-  type: ActionTypes.CREATE_MODAL_OPEN,
+//CREATE MODAL CARDS OPEN
+export const createModalCardsOpen = () => ({
+  type: ActionTypes.CREATE_MODAL_CARDS_OPEN,
 });
 
-//CREATE MODAL CLOSE
-export const createModalClose = () => ({
-  type: ActionTypes.CREATE_MODAL_CLOSE,
+//CREATE MODAL CARDS CLOSE
+export const createModalCardsCLose = () => ({
+  type: ActionTypes.CREATE_MODAL_CARDS_CLOSE,
+});
+
+//CREATE MODAL BOARD OPEN
+export const createModalBoardsOpen = () => ({
+  type: ActionTypes.CREATE_MODAL_BOARDS_OPEN,
+});
+
+//CREATE MODAL BOARD CLOSE
+export const createModalBoardsClose = () => ({
+  type: ActionTypes.CREATE_MODAL_BOARDS_CLOSE,
 });
 
 //AUTH IN

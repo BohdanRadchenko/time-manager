@@ -14,7 +14,7 @@ const Login = ({onLogin, reLogin}) => {
         if(data && data.token) {
             reLogin(data.token)
         }
-    }, [getLocalStorage()])
+    }, [data, reLogin])
 
     const handleChange = e => {
         if (e.target.name === 'remember') {

@@ -16,7 +16,7 @@ import {
 import {getToken} from './sessionSelectors';
 import {addLocalStorage} from '../../helpers/localStorage.helpers'
 
-axios.defaults.baseURL = '/api/v1/auth';
+axios.defaults.baseURL = '/api/v1';
 
 const setAuthToken = token => {
   axios.defaults.headers.common.Authorization = token;
@@ -29,7 +29,7 @@ const clearAuthToken = () => {
 export const signUp = credentials => dispatch => {
   dispatch(signUpRequest());
   return axios
-      .post('/register', credentials)
+      .post('/auth/register', credentials)
       .then(response => {
         // if (response.data.error) return dispatch(signUpError(response.data.error));
         addLocalStorage(response.data)
@@ -43,7 +43,7 @@ export const signUp = credentials => dispatch => {
 export const login = credentials => dispatch => {
   dispatch(signInRequest());
   return axios
-      .post('/login', credentials)
+      .post('/auth/login', credentials)
       .then(response => {
         addLocalStorage(response.data)
         setAuthToken(response.data.token)
@@ -55,7 +55,7 @@ export const login = credentials => dispatch => {
 export const relogin = credentials => dispatch => {
   dispatch(signInRequest());
   return axios
-      .get('/relogin', {headers : {Authorization : `Bearer ${credentials}`}})
+      .get('/auth/relogin', {headers : {Authorization : `Bearer ${credentials}`}})
       .then(response => {
         addLocalStorage(response.data)
         setAuthToken(response.data.token)

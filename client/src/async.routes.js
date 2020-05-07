@@ -1,5 +1,10 @@
 import {lazy} from 'react';
 
+
+export const AsyncHome = lazy(() =>
+  import('./pages/HomePage'),
+);
+
 export const AsyncDashboard = lazy(() =>
   import('./pages/DashboardPage'),
 );
@@ -11,4 +16,3 @@ export const AsyncLogin = lazy(() =>
 export const AsyncRegister = lazy(() =>
   import('./pages/RegisterPage'),
 );
-

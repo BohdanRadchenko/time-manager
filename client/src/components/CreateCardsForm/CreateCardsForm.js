@@ -2,9 +2,9 @@ import React from "react";
 import MinutesSelect from "../Selects/MinutesSelect";
 import DatSelect from "../Selects/DaySelect";
 import HoursSelect from "../Selects/HoursSelect";
-import css from './CreateForm.module.css'
+import css from './CreateCardsForm.module.css'
 
-const CreateForm = () => {
+const CreateCardsForm = () => {
   const handleSubmit = e => {
     e.preventDefault()
     console.log('submit')
@@ -35,4 +35,4 @@ const CreateForm = () => {
   )
 }
 
-export default CreateForm
+export default CreateCardsForm

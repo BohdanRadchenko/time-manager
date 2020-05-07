@@ -41,7 +41,7 @@ router.post('/register',
         const token = jwt.sign(
             {userId: user.id},
             config.get('jwtSecret'),
-            {expiresIn: '3h'}
+            {expiresIn: '24h'}
         )
         console.log({message: `User - ${email} - has been created`})
         res.status(201).json({
@@ -85,7 +85,7 @@ router.post(
         const token = jwt.sign(
             {userId: user.id},
             config.get('jwtSecret'),
-            {expiresIn: '1h'}
+            {expiresIn: '24h'}
         )
         console.log(user)
         console.log({message: `correct login ${email}`})

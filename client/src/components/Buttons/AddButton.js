@@ -1,4 +1,5 @@
 import React from "react";
+import {useHistory} from 'react-router-dom'
 import {connect} from 'react-redux'
 import * as controllerActions
   from '../../redux/controller/controllerActions'
@@ -9,10 +10,17 @@ import ControlPointOutlinedIcon
 import {headerIconStyle} from '../../helpers/variables'
 import css from './StyleIconsButtons.module.css'
 
-const AddButton = ({isModal, modalOpen, modalClose}) => {
+const AddButton = ({isModalCards, isModalBoards, CardsModalOpen, CardsModalClose, BoardsModalOpen, BoardsModalClose}) => {
+  const pathname = useHistory().location.pathname
   const handleButtonClick = () => {
-    if(isModal) modalClose()
-    if(!isModal) modalOpen()
+    if(pathname.includes('/dashboard')) {
+      if (isModalCards) CardsModalClose()
+      if (!isModalCards) CardsModalOpen()
+    }
+    if(pathname === '/home') {
+      if (isModalBoards) BoardsModalClose()
+      if (!isModalBoards) BoardsModalOpen()
+    }
   }
 
   return (
@@ -26,13 +34,18 @@ const AddButton = ({isModal, modalOpen, modalClose}) => {
   );
 }
 
-const mSTP = state => ({
-      isModal: controllerSelectors.createModal(state)
-})
+const mSTP = state => (
+    {
+      isModalCards: controllerSelectors.createModalCards(state),
+      isModalBoards: controllerSelectors.createModalBoards(state)
+    }
+)
 
 const mDTP = {
-  modalOpen: controllerActions.createModalOpen,
-  modalClose: controllerActions.createModalClose
+  CardsModalOpen: controllerActions.createModalCardsOpen,
+  CardsModalClose: controllerActions.createModalCardsCLose,
+  BoardsModalOpen: controllerActions.createModalBoardsOpen,
+  BoardsModalClose: controllerActions.createModalBoardsClose
 }
 
 export default connect(mSTP, mDTP)(AddButton)

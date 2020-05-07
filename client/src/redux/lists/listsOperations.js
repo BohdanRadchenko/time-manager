@@ -1,22 +1,10 @@
 import axios from 'axios';
 import {
-  signUpRequest,
-  signUpSuccesss,
-  signUpError,
-  signInRequest,
-  signInSuccesss,
-  signInError,
-  refreshUserRequest,
-  logOutRequest,
-  logOutSuccess,
-  logOutError,
-  refreshUserSuccess,
-  refreshUserError,
+  listsRequest, listsSuccess, listsError, listPatchRequest, listPatchSuccess, listPatchError
 } from './listsActions';
-import {getToken} from './listsSelectors';
-import {addLocalStorage} from '../../helpers/localStorage.helpers'
+// import {getToken} from './listsSelectors';
 
-axios.defaults.baseURL = '/api/v1/auth';
+axios.defaults.baseURL = '/api/v1';
 
 const setAuthToken = token => {
   axios.defaults.headers.common.Authorization = token;
@@ -26,58 +14,25 @@ const clearAuthToken = () => {
   axios.defaults.headers.common.Authorization = null;
 };
 
-export const signUp = credentials => dispatch => {
-  dispatch(signUpRequest());
+export const listsHandler = credentials => dispatch => {
+  dispatch(listsRequest());
   return axios
-      .post('/register', credentials)
+      .get(`/boards/get/${credentials}`)
       .then(response => {
-        // if (response.data.error) return dispatch(signUpError(response.data.error));
-        addLocalStorage(response.data)
-        setAuthToken(response.data.token)
-        dispatch(signUpSuccesss(response.data));
-        return dispatch(signInSuccesss(response.data));
+        console.log(response.data)
+        return dispatch(listsSuccess(response.data.board.lists));
       })
-      .catch(error => dispatch(signUpError(error)));
+      .catch(error => dispatch(listsError(error)));
 };
 
-export const login = credentials => dispatch => {
-  dispatch(signInRequest());
+export const handlePatchList = (id, lists) => dispatch => {
+  dispatch(listPatchRequest());
   return axios
-      .post('/login', credentials)
+      .patch(`/boards/patch/${id}`, {lists})
       .then(response => {
-        addLocalStorage(response.data)
-        setAuthToken(response.data.token)
-        return dispatch(signInSuccesss(response.data));
+        return dispatch(listPatchSuccess(response.data.board.lists));
       })
-      .catch(error => dispatch(signInError(error)));
+      .catch(error => dispatch(listPatchError(error)));
 };
 
-export const relogin = credentials => dispatch => {
-  dispatch(signInRequest());
-  return axios
-      .get('/relogin', {headers : {Authorization : `Bearer ${credentials}`}})
-      .then(response => {
-        addLocalStorage(response.data)
-        setAuthToken(response.data.token)
-        return dispatch(signInSuccesss(response.data));
-      })
-      .catch(error => dispatch(signInError(error)))
-};
 
-export const signOut = () => (dispatch, getState) => {
-  dispatch(logOutRequest());
-
-  const token = getToken(getState());
-  if (!token) return;
-  setAuthToken(token);
-
-  axios
-      .get('logout')
-      .then(() => {
-        dispatch(logOutSuccess());
-        clearAuthToken();
-      })
-      .catch(error => {
-        dispatch(logOutError(error));
-      });
-};

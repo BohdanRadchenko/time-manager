@@ -4,7 +4,8 @@ import * as controllerSelectors
   from '../../redux/controller/controllerSelectors'
 import * as controllerActions
   from '../../redux/controller/controllerActions'
-import CreateForm from "../CreateForm/CreateForm";
+import CreateCardsForm from "../CreateCardsForm/CreateCardsForm";
+import CreateBoardsForm from "../CreateBoardsForm/CreateBoardsForm";
 import css from './Modal.module.css';
 
 class Modal extends Component {
@@ -22,7 +23,8 @@ class Modal extends Component {
 
   handleKeyPress = e => {
     if (e.code !== 'Escape') return;
-    this.props.onClose();
+    this.props.onCloseModalCards();
+    this.props.onCloseModalBoards();
   };
 
   handleBackdropClick = e => {
@@ -30,37 +32,48 @@ class Modal extends Component {
     if (current && e.target !== current) {
       return;
     }
-    this.props.onClose();
+    this.props.onCloseModalCards();
+    this.props.onCloseModalBoards();
   };
 
   render() {
-    const {createModal} = this.props
+    const {isCreateModalCards, isCreateModalBoards} = this.props
+    if(isCreateModalCards ||  isCreateModalBoards) {
     return (
         <>
-          {createModal && (
               <div
                   className={css.backdrop}
                   ref={this.backdropRef}
                   onClick={this.handleBackdropClick}
               >
-                <div className={css.modal}>
-                  <CreateForm/>
-                </div>
+                {isCreateModalCards && (
+                    <div className={css.modal}>
+                      <CreateCardsForm/>
+                    </div>
+                )}
+                {isCreateModalBoards && (
+                    <div className={css.modal}>
+                      <CreateBoardsForm/>
+                    </div>
+                )}
               </div>
-          )}
         </>
-    );
+    )}
+    return null
   }
 }
 
 const mSTP = state => (
     {
-      createModal: controllerSelectors.createModal(state)
+      isCreateModalCards: controllerSelectors.createModalCards(state),
+      isCreateModalBoards: controllerSelectors.createModalBoards(
+          state)
     }
 )
 
 const mDTP = {
-  onClose: controllerActions.createModalClose
+  onCloseModalCards: controllerActions.createModalCardsCLose,
+  onCloseModalBoards: controllerActions.createModalBoardsClose,
 }
 
 export default connect(mSTP, mDTP)(Modal)

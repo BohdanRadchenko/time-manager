@@ -1,14 +1,26 @@
-import React from "react";
+import React, {useEffect} from "react";
+import {useHistory} from 'react-router-dom'
 import {connect} from 'react-redux'
+import * as listsOperations from '../../redux/lists/listsOperations'
 import * as listsSelectors from '../../redux/lists/listsSelectors'
 import * as listsActions from '../../redux/lists/listsActions'
 import {DragDropContext} from 'react-beautiful-dnd'
 import DrawLists from "../DrawLists/DrawLists";
 import css from './ListsContainer.module.css'
 
-const ListsContainer = ({lists, handleDrag}) => {
+const ListsContainer = ({lists, handleDrag, getAllLists, handlePatchList}) => {
+  const history = useHistory()
+  const boardId = history.location.pathname.split('/')[2]
+
+  useEffect(() => {
+    getAllLists(boardId)
+  }, [boardId, getAllLists])
+
+  // useEffect(() => {
+  //   handlePatchList(boardId, lists)
+  // }, [boardId, lists, handleDrag])
+
   const onDragEnd = (result) => {
-    console.log(result)
     const {destination, source, draggableId, type} = result
     if (!destination) return
     handleDrag(
@@ -42,7 +54,10 @@ const mSTP = state => (
 )
 
 const mDTP = {
-  handleDrag: listsActions.handleDrag
+  handleDrag: listsActions.handleDrag,
+  getAllLists: listsOperations.listsHandler,
+  handlePatchList: listsOperations.handlePatchList
+
 }
 
 export default connect(mSTP, mDTP)(ListsContainer)

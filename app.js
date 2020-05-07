@@ -27,6 +27,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/v1/auth', require('./routes/auth.routers'))
+app.use('/api/v1/boards', require('./routes/board.routers'))
 
 app.use('/', express.static(path.join(__dirname, "client", "build")))
 app.get("*", (req, res) => {
