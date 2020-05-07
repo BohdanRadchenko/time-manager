@@ -16,9 +16,9 @@ const ListsContainer = ({lists, handleDrag, getAllLists, handlePatchList}) => {
     getAllLists(boardId)
   }, [boardId, getAllLists])
 
-  // useEffect(() => {
-  //   handlePatchList(boardId, lists)
-  // }, [boardId, lists, handleDrag])
+  useEffect(() => {
+    handlePatchList(boardId, lists)
+  }, [handleDrag])
 
   const onDragEnd = (result) => {
     const {destination, source, draggableId, type} = result
