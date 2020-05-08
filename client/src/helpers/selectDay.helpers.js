@@ -1,8 +1,6 @@
 const selectDay = (options) => {
-  console.log(options)
   const day = new Date().getDay()
-  console.log(day)
-  return options.filter(el => el.value === day)
+  return options.filter(el => el.value === day-1)
 }
 
 export default selectDay

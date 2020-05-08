@@ -16,7 +16,7 @@ export const listsError = error => ({
 });
 
 
-//ALL LIST
+//LIST PATCH
 export const listPatchRequest = () => ({
   type: ActionTypes.LISTS_REQUEST,
 });
@@ -28,6 +28,21 @@ export const listPatchSuccess = response => ({
 
 export const listPatchError = error => ({
   type: ActionTypes.LISTS_ERROR,
+  payload: error ,
+});
+
+//CREATE CARD
+export const createCardRequest = () => ({
+  type: ActionTypes.CREATE_CARDS_REQUEST,
+});
+
+export const createCardSuccess = response => ({
+  type: ActionTypes.CREATE_CARDS_SUCCESS,
+  payload: response ,
+});
+
+export const createCardError = error => ({
+  type: ActionTypes.CREATE_CARDS_ERROR,
   payload: error ,
 });
 

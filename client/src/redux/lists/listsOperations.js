@@ -1,6 +1,14 @@
 import axios from 'axios';
 import {
-  listsRequest, listsSuccess, listsError, listPatchRequest, listPatchSuccess, listPatchError
+  createCardError,
+  createCardRequest,
+  createCardSuccess,
+  listPatchError,
+  listPatchRequest,
+  listPatchSuccess,
+  listsError,
+  listsRequest,
+  listsSuccess
 } from './listsActions';
 // import {getToken} from './listsSelectors';
 
@@ -19,7 +27,6 @@ export const listsHandler = credentials => dispatch => {
   return axios
       .get(`/boards/get/${credentials}`)
       .then(response => {
-        console.log(response.data)
         return dispatch(listsSuccess(response.data.board.lists));
       })
       .catch(error => dispatch(listsError(error)));
@@ -33,6 +40,17 @@ export const handlePatchList = (id, lists) => dispatch => {
         return dispatch(listPatchSuccess(response.data.board.lists));
       })
       .catch(error => dispatch(listPatchError(error)));
+};
+
+
+export const handleCreateCards = (id, card) => dispatch => {
+  dispatch(createCardRequest());
+  return axios
+      .post(`/cards/create`, {id, card})
+      .then(response => {
+        return dispatch(createCardSuccess(response.data.board.lists));
+      })
+      .catch(error => dispatch(createCardError(error)));
 };
 
 

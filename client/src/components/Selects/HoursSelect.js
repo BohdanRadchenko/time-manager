@@ -17,11 +17,11 @@ const options = [
 ];
 
 
-const HoursSelect = () => {
+const HoursSelect = ({getChange}) => {
   const [selectedOption, setSelectedOption] = useState(  {value: 9, label: '09'},)
   const handleChange = value => {
-    console.log(`Option selected:`, value);
     setSelectedOption(value)
+    getChange({...selectedOption, type: 'hour'})
   };
 
   return (

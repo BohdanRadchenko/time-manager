@@ -1,14 +1,13 @@
 import {combineReducers} from 'redux';
 import {ActionTypes} from '../actionTypes';
 
-// import db from '../../db.json'
-// const initiallyState = db
-
 const lists = (state = [], {type, payload}) => {
   switch (type) {
     case ActionTypes.LISTS_SUCCESS:
     case ActionTypes.LIST_PATCH_SUCCESS:
+    case ActionTypes.CREATE_CARDS_SUCCESS:
       return payload
+
 
     case  ActionTypes.DRAG_HAPPENED:
       const {
