@@ -27,6 +27,7 @@ export const listsHandler = id => dispatch => {
   return axios
       .get(`/boards/get/${id}`)
       .then(response => {
+        console.log('LISTS HANDLER RESPONSE ' response)
         return dispatch(listsSuccess(response.data.board.lists));
       })
       .catch(error => dispatch(listsError(error)));
