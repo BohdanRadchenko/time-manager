@@ -31,7 +31,7 @@ export const listsHandler = id => dispatch => {
         return dispatch(listsSuccess(response.data.board.lists));
       })
       .catch(error => {
-        console.log('error lists handler')
+        console.log('error lists handler', error)
         return dispatch(listsError(error))
       });
 };
