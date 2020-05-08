@@ -15,7 +15,7 @@ const lists = (state = [], {type, payload}) => {
         droppableIdEnd,
         droppableIndexEnd,
         droppableIndexStart,
-        type
+        // type
       } = payload;
 
       // in the same list
