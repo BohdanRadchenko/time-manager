@@ -11,6 +11,7 @@ import css from './ListsContainer.module.css'
 const ListsContainer = ({lists, handleDrag, getAllLists, handlePatchList}) => {
   const history = useHistory()
   const boardId = history.location.pathname.split('/')[2]
+  console.log('boardId', boardId)
 
   useEffect(() => {
     getAllLists(boardId)
