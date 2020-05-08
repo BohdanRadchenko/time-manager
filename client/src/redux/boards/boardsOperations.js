@@ -5,7 +5,7 @@ import {
   boardsSuccess
 } from './boardsActions';
 
-axios.defaults.baseURL = '/api/v1/';
+axios.defaults.baseURL = 'https://ptm-book.herokuapp.com/api/v1/';
 
 const setAuthToken = token => {
   axios.defaults.headers.common.Authorization = token;
