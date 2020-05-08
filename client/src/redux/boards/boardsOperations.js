@@ -5,7 +5,7 @@ import {
   boardsSuccess
 } from './boardsActions';
 
-axios.defaults.baseURL = 'https://ptm-book.herokuapp.com/api/v1/';
+axios.defaults.baseURL = '/api/v1/';
 
 const setAuthToken = token => {
   axios.defaults.headers.common.Authorization = token;
@@ -31,6 +31,7 @@ export const getBoardsAll = credentials => dispatch => {
   return axios
       .get('/boards/all')
       .then(response => {
+        console.log('boards response ', response.data.boards)
         return dispatch(boardsSuccess(response.data.boards));
       })
       .catch(error => dispatch(boardsError(error)));

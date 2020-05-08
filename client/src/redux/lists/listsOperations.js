@@ -37,6 +37,7 @@ export const handlePatchList = (id, lists) => dispatch => {
   return axios
       .patch(`/boards/patch/${id}`, {lists})
       .then(response => {
+        console.log('lists response ', response.data.board.lists)
         return dispatch(listPatchSuccess(response.data.board.lists));
       })
       .catch(error => dispatch(listPatchError(error)));
