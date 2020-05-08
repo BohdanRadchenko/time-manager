@@ -12,8 +12,10 @@ const ListsContainer = ({lists, handleDrag, getAllLists, handlePatchList}) => {
   const history = useHistory()
   const boardId = history.location.pathname.split('/')[2]
   console.log('boardId', boardId)
+  console.log('lists', lists)
 
   useEffect(() => {
+    console.log('GET LISTS')
     getAllLists(boardId)
   }, [boardId, getAllLists])
 
