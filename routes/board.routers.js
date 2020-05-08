@@ -32,6 +32,7 @@ router.get('/all', async (req, res) => {
 // /api/v1/boards/get/:id
 router.get('/get/:id', async (req, res) => {
   try {
+    console.log('GET BOARDS BY ID')
     const board = await Board.findById(req.params.id)
     res.status(200).json({message: 'ok', board})
   } catch (e) {
@@ -43,11 +44,11 @@ router.get('/get/:id', async (req, res) => {
 // /api/v1/boards/patch/:id
 router.patch('/patch/:id', async (req, res) => {
   try {
-    console.log('work')
     const boardId = req.params.id
     const lists = req.body.lists
     await Board.where({_id: boardId})
-        .update({lists: lists})
+        // .update({lists: lists})
+        .updateOne({lists: lists})
     const board = await Board.findById(req.params.id)
     res.status(200).json({message: 'Board upgrade', board})
   } catch (e) {

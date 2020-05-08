@@ -22,10 +22,10 @@ const clearAuthToken = () => {
   axios.defaults.headers.common.Authorization = null;
 };
 
-export const listsHandler = credentials => dispatch => {
+export const listsHandler = id => dispatch => {
   dispatch(listsRequest());
   return axios
-      .get(`/boards/get/${credentials}`)
+      .get(`/boards/get/${id}`)
       .then(response => {
         return dispatch(listsSuccess(response.data.board.lists));
       })
