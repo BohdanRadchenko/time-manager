@@ -1,0 +1,22 @@
+.container {
+    width: 98%;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+
+.boardsList {
+    width: 100%;
+    padding: 0;
+    margin: 0 auto;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.boardsItem {
+    width: 15%;
+    /*margin-right: 2%;*/
+    margin-bottom: 30px;
+}

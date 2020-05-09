@@ -9,6 +9,7 @@ import css from './BoardsList.module.css'
 const BoardsList = ({boardsList, getAllBoards}) => {
   const history = useHistory()
 
+
   const handleBoardClick = id => {
     history.push(`/dashboard/${id}`)
   }
@@ -18,12 +19,9 @@ const BoardsList = ({boardsList, getAllBoards}) => {
   }, [getAllBoards])
   return (
       <div className={css.container}>
-        <p>
-          boardsList
-        </p>
-        <ul>
+        <ul className={css.boardsList}>
           {!!boardsList.length && boardsList.map(board => (
-              <li key={board._id} onClick={e => handleBoardClick(board._id)}>
+              <li key={board._id} className={css.boardsItem} onClick={e => handleBoardClick(board._id)}>
                 <DrawBoardsCard {...board}/>
               </li>
           ))}

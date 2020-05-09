@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Select from 'react-select';
 
 const options = [
@@ -16,12 +16,16 @@ const options = [
   {value: 20, label: '20'},
 ];
 
-
 const HoursSelect = ({getChange}) => {
-  const [selectedOption, setSelectedOption] = useState(  {value: 9, label: '09'},)
+  const [selectedOption, setSelectedOption] = useState(  {value: 9, label: '09'})
+
+  // useEffect(() => {
+  //   getChange({...selectedOption, type: 'hour'})
+  // }, [selectedOption])
+
   const handleChange = value => {
     setSelectedOption(value)
-    getChange({...selectedOption, type: 'hour'})
+    getChange({...value, type: 'hour'})
   };
 
   return (

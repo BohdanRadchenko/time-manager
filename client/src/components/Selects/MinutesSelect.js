@@ -1,22 +1,25 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Select from 'react-select';
 
 const options = [
-  {value: '00', label: '00'},
-  {value: '10', label: '10'},
-  {value: '20', label: '20'},
-  {value: '30', label: '30'},
-  {value: '40', label: '40'},
-  {value: '50', label: '50'},
+  {value: 0, label: '00'},
+  {value: 10, label: '10'},
+  {value: 20, label: '20'},
+  {value: 30, label: '30'},
+  {value: 40, label: '40'},
+  {value: 50, label: '50'},
 ];
 
-
 const MinutesSelect = ({getChange}) => {
-  const [selectedOption, setSelectedOption] = useState( {value: '00', label: '00'},)
+  const [selectedOption, setSelectedOption] = useState( {value: 0, label: '00'})
+
+  // useEffect(() => {
+    // getChange({...selectedOption, type: 'min'})
+  // }, [selectedOption])
+
   const handleChange = value => {
-    console.log(`Option selected:`, value);
-    setSelectedOption(selectedOption)
-    getChange({...selectedOption, type: 'min'})
+    setSelectedOption(value)
+    getChange({...value, type: 'min'})
 
   };
 

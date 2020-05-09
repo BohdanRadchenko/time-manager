@@ -31,7 +31,6 @@ export const getBoardsAll = credentials => dispatch => {
   return axios
       .get('/boards/all')
       .then(response => {
-        console.log('boards response ', response.data.boards)
         return dispatch(boardsSuccess(response.data.boards));
       })
       .catch(error => dispatch(boardsError(error)));

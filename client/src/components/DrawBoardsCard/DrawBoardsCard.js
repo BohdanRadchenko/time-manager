@@ -1,15 +1,16 @@
 import React from "react";
 import css from './DrawBoardsCard.module.css'
 
-const DrawBoardsCard = ({title, data}) => {
+const DrawBoardsCard = ({title, data, _id}) => {
   return (
       <div className={css.container}>
-        <p>
-          {title}
-        </p>
-        <p>
-          {data}
-        </p>
+          <div className={css.containerInner}>
+            <div className={css.contentWrapper}>
+              <p>{_id}</p>
+              <p>{title}</p>
+              <p>{data}</p>
+            </div>
+        </div>
       </div>
   )
 }

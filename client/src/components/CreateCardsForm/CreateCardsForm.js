@@ -2,33 +2,38 @@ import React, {useState} from "react";
 import {useHistory} from 'react-router-dom'
 import {connect} from 'react-redux'
 import * as listsOperations from '../../redux/lists/listsOperations'
-import * as controllerActions from '../../redux/controller/controllerActions'
+import * as controllerActions
+  from '../../redux/controller/controllerActions'
 import MinutesSelect from "../Selects/MinutesSelect";
 import DatSelect from "../Selects/DaySelect";
 import HoursSelect from "../Selects/HoursSelect";
 import css from './CreateCardsForm.module.css'
 
 const CreateCardsForm = ({onModalCardsClose, handleCreateCards}) => {
-  const defaultForm = {title: '', day: '', hour: '', min: ''}
+  const defaultForm = {title: '', day: '', hour: 9, min: 0}
   const [form, setForm] = useState(defaultForm)
   const history = useHistory()
   const boardId = history.location.pathname.split('/')[2]
 
-  console.log('form', form)
-
-  const handleChange = (e) => {
-    if(e.target) {
-    setForm({...form, [e.target.name]: e.target.value})
-    }else if (e.type) {
-    setForm({...form, [e.type]: e.value})
+  const handleChange = e => {
+    if (e.target) {
+      return setForm({...form, [e.target.name]: e.target.value})
+    }
+    if(e.type === 'change') {
+      return null
+    }
+    if (e.type) {
+      return setForm({...form, [e.type]: e.value})
     }
   }
 
+  console.log('form', form)
+
   const handleSubmit = e => {
     e.preventDefault()
-    handleCreateCards(boardId , form)
-    // setForm(defaultForm)
-    // onModalCardsClose()
+    handleCreateCards(boardId, form)
+    setForm(defaultForm)
+    onModalCardsClose()
   }
 
   return (
@@ -45,10 +50,10 @@ const CreateCardsForm = ({onModalCardsClose, handleCreateCards}) => {
           </div>
           <div className={css.TimeSelectWrapper}>
             <div className={css.HourSelectWrapper}>
-            <HoursSelect getChange={handleChange}/>
+              <HoursSelect getChange={handleChange}/>
             </div>
             <div className={css.MinutSelectWrapper}>
-            <MinutesSelect getChange={handleChange}/>
+              <MinutesSelect getChange={handleChange}/>
             </div>
           </div>
         </div>
@@ -60,8 +65,8 @@ const CreateCardsForm = ({onModalCardsClose, handleCreateCards}) => {
 }
 
 const mDTP = {
-  handleCreateCards :listsOperations.handleCreateCards,
-  onModalCardsClose : controllerActions.createModalCardsCLose
+  handleCreateCards: listsOperations.handleCreateCards,
+  onModalCardsClose: controllerActions.createModalCardsCLose
 }
 
 export default connect(null, mDTP)(CreateCardsForm)
