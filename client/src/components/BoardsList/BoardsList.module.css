@@ -10,13 +10,19 @@
     margin: 0 auto;
     list-style: none;
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
 }
 
 .boardsItem {
-    width: 15%;
-    /*margin-right: 2%;*/
-    margin-bottom: 30px;
+    width: 18.5%;
+    margin-right: 1.8%;
+    margin-bottom: 20px;
+}
+
+.boardsItem:nth-child(5n) {
+    margin-right: 0;
+}
+
+.boardsItem:nth-last-child(-n+5) {
+    margin-bottom: 0;
 }

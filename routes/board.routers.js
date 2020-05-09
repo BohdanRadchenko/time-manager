@@ -32,12 +32,11 @@ router.get('/all', async (req, res) => {
 // /api/v1/boards/get/:id
 router.get('/get/:id', async (req, res) => {
   try {
-    console.log('GET BOARDS BY ID')
     const board = await Board.findById(req.params.id)
     res.status(200).json({message: 'ok', board})
   } catch (e) {
     res.status(500)
-        .json({message: `error post register ${e.message}`})
+        .json({message: `error get boards by id ${e.message}`})
   }
 })
 
@@ -53,7 +52,19 @@ router.patch('/patch/:id', async (req, res) => {
     res.status(200).json({message: 'Board upgrade', board})
   } catch (e) {
     res.status(500)
-        .json({message: `error get users by id ${e.message}`})
+        .json({message: `error patch boards by id ${e.message}`})
+  }
+})
+
+// /api/v1/boards/:id
+router.delete('/:id', async (req, res) => {
+  try {
+    await Board.findById(req.params.id).deleteOne()
+    const board = Board.find()
+    res.status(200).json({message: 'delete board by id', board})
+  } catch (e) {
+    res.status(500)
+        .json({message: `error delete boards by id ${e.message}`})
   }
 })
 

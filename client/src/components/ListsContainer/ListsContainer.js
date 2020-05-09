@@ -7,6 +7,8 @@ import * as listsActions from '../../redux/lists/listsActions'
 import {DragDropContext} from 'react-beautiful-dnd'
 import DrawLists from "../DrawLists/DrawLists";
 import css from './ListsContainer.module.css'
+import CreateBoardButton
+  from "../Buttons/CreateBoardButton/CreateBoardButton";
 
 const ListsContainer = ({lists, handleDrag, getAllLists, handlePatchList}) => {
   const history = useHistory()
@@ -31,15 +33,15 @@ const ListsContainer = ({lists, handleDrag, getAllLists, handlePatchList}) => {
   }
   return (
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className={css.container}>
+        <ul className={css.container}>
           {lists && lists.map(list => (
-              <div
+              <li
                   key={list.id}
                   className={css.listsContainer}>
                 <DrawLists  {...list}/>
-              </div>
+              </li>
           ))}
-        </div>
+        </ul>
       </DragDropContext>
   )
 }
