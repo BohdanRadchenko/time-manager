@@ -18,7 +18,7 @@
     padding: 10px 40px 10px 4px;
     border-radius: 5px;
     background-color: #0079bf;
-    width: 74%;
+    width: 100%;
 }
 
 .inputWrapper {
@@ -85,46 +85,27 @@
     border: 1px solid #fff;
 }
 
-/* TYPE BUTTON */
-.typeWrapper {
-    width: 100%;
+
+/*SELECT*/
+.selectWrapper {
     display: flex;
-    justify-content: space-around;
-    margin-bottom: 10px;
+    justify-content: space-between;
 }
 
-.typeButton {
-    border: none;
-    cursor: pointer;
-    width: 40%;
-    border-radius: 5px;
-    color: #ffffff;
-    outline: none;
-    font-size: 12px;
-    line-height: 1.4;
-    padding-left: 10px;
-    background: hsla(0, 0%, 100%, 0.1);
-    margin-bottom: 6px;
-}
-
-.typeButton[attr='true'] {
-    background: hsla(0,0%,100%,.2);
-    font-weight: 600;
-    transform: scale(1.1);
+.daySelectWrapper {
+    width: 100px;
 }
 
 
-/*DATEPICKER */
-.dateWrapper {
-
+.TimeSelectWrapper {
+    display: flex;
+    justify-content: flex-end;
 }
 
-
-/*COLOR WRAPPER*/
-.colorWrapper {
-    width: 24%;
+.HourSelectWrapper,
+.MinutSelectWrapper {
+    width: 100px;
 }
-
 
 /* SUBMIT BUTTON*/
 .submitButton {

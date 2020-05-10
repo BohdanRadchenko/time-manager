@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React from "react"
 import {connect} from 'react-redux'
 import * as controllerSelectors from '../../redux/controller/controllerSelectors'
 import * as controllerActions from '../../redux/controller/controllerActions'
@@ -8,13 +8,12 @@ import css from './Dashboard.module.css'
 
 
 const Dashboard = ({burgerMenu}) => {
+
   return (
       <div className={css.container}>
         <div className={css.dashboardContainer}>
           <div className={burgerMenu ? css.popUpSide : css.popUpSideOff}>
-            {burgerMenu && (
                 <BurgerDashboard/>
-            )}
           </div>
           <div className={burgerMenu ? css.mainSideOff : css.mainSide}>
             <ListsContainer/>
@@ -29,7 +28,7 @@ const mSTP = state => ({
 })
 
 const mDTP = {
-  handlerBurger: controllerActions.handlerBurger
+  handlerBurger: controllerActions.handlerBurger,
 }
 
 export default connect(mSTP, mDTP)(Dashboard)

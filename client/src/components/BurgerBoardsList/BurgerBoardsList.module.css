@@ -1,0 +1,66 @@
+.container {
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.boardsList {
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 10px 4px;
+}
+
+.boardsItem {
+    width: 100%;
+    padding: 4px;
+    display: block;
+    box-sizing: border-box;
+    border: 1px solid #026aa7;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.boardsItem:hover {
+    transform: scale(1.05);
+}
+
+.boardsItem:last-child {
+    margin-bottom: 0;
+}
+
+.title {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #172b4d;
+    margin: 0;
+    display: block;
+}
+
+.dateWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.startDateWrapper,
+.endDateWrapper {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.startDateWrapper p,
+.endDateWrapper p {
+    text-transform: lowercase;
+    margin-right: 2px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #026aa7;
+}
+
+.horizonLine {
+    border: 1px solid #026aa7;
+    margin: 0 10px;
+}

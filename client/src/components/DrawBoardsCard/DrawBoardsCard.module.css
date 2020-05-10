@@ -77,6 +77,10 @@
     margin-bottom: 4px;
 }
 
+.endDateWrapper {
+    margin-bottom: 8px;
+}
+
 .startDateWrapper p,
 .endDateWrapper p {
     font-size: 16px;
@@ -95,7 +99,11 @@
     width: 60%;
     margin: 0 auto 6px auto;
     border: 1px solid rgba(255, 255, 255, 0.4);
+}
 
+.type {
+    composes: title;
+    font-size: 10px;
 }
 
 /*.startDateWrapper p::after,*/

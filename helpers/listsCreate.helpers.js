@@ -8,7 +8,7 @@ const dayArray = [
   {id: 6, title: 'Sunday'}
 ]
 
-const listsCreate = ({startValueDay, startValueMonth}) => {
+const listsCreate = ({startValueDay, startValueMonth, type}) => {
   const day = startValueDay
   const month = startValueMonth
   const year = new Date().getFullYear()
@@ -28,6 +28,7 @@ const listsCreate = ({startValueDay, startValueMonth}) => {
       id: `list-${id}`,
       title: title,
       date: dateStarter(id),
+      type,
       cards: [
         // {
         //   id: `cards-${id}0`,

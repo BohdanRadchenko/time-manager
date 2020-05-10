@@ -15,7 +15,7 @@ const App = ({isAuthentication, login}) => {
       <Suspense fallback={<Loaders/>}>
         <Router basename='/'>
           {routes}
-          <Modal/>
+          {/*<Modal/>*/}
         </Router>
       </Suspense>
   );

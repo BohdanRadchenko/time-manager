@@ -8,15 +8,15 @@ const boardsCreate = require('../helpers/boardsCreate.helpers')
 // /api/v1/boards/create
 router.post('/create', async (req, res) => {
   try {
-    const {title} = req.body
-    const newLists = listsCreate(req.body)
-    const newBoard = boardsCreate('author', title, newLists)
-    console.log(newBoard)
+    const {title, type} = req.body
+    const newLists = listsCreate(req.body, type)
+    const newBoard = boardsCreate('author', title, newLists, type)
     const board = new Board({
       lists: newBoard.lists,
       title :newBoard.title,
       dateStart :newBoard.dateStart,
       dateEnd :newBoard.dateEnd,
+      type : newBoard.type
     })
     await board.save()
     const boards = await Board.find()

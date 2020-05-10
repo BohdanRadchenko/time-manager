@@ -11,9 +11,12 @@ const options = [
 const dataListsParse = data => {
   if (!data) return
   const date = new Date(data)
-  const week = options.find(el => el.value === date.getUTCDay()).label
   // const week = date.getUTCDay()
-  const day = date.getUTCDate()
+  const week = options.find(el => el.value === date.getUTCDay()).label
+  // const day = date.getUTCDate()
+  const day = date.getUTCDate() < 10
+      ? `0${date.getUTCDate()}`
+      : date.getUTCDate()
   // const month = date.getUTCMonth() + 1
   const month = (date.getUTCMonth() + 1) < 10
       ? `0${date.getUTCMonth() + 1}`

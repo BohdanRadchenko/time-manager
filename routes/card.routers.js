@@ -16,7 +16,7 @@ router.post('/create', async (req, res) => {
     res.status(200).json({message: 'Card create', board : newBoard})
   } catch (e) {
     res.status(500)
-        .json({message: `error get users by id ${e.message}`})
+        .json({message: `error create card ${e.message}`})
   }
 })
 

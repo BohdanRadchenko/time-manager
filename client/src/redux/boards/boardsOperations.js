@@ -1,9 +1,14 @@
 import axios from 'axios';
 import {
+  boardsAllError,
+  boardsAllRequest,
+  boardsAllSuccess,
   boardsError,
   boardsRequest,
   boardsSuccess,
-    deleteBoardRequest, deleteBoardSuccess, deleteBoardError
+  deleteBoardError,
+  deleteBoardRequest,
+  deleteBoardSuccess
 } from './boardsActions';
 
 axios.defaults.baseURL = '/api/v1/';
@@ -36,6 +41,7 @@ export const getBoardsAll = credentials => dispatch => {
       })
       .catch(error => dispatch(boardsError(error)));
 };
+
 
 export const deleteBoard = id => dispatch => {
   dispatch(deleteBoardRequest());

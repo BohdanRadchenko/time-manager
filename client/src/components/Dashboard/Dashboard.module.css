@@ -13,6 +13,7 @@
 .popUpSide {
     transition: all .5s ease-in-out;
     width: 16%;
+    overflow: hidden;
 }
 
 .popUpSideOff {

@@ -10,12 +10,16 @@ import ControlPointOutlinedIcon
 import {headerIconStyle} from '../../helpers/variables'
 import css from './StyleIconsButtons.module.css'
 
-const AddButton = ({isModalCards, CardsModalOpen, CardsModalClose}) => {
+const AddButton = ({isModalCards, CardsModalOpen, CardsModalClose, BoardsModalOpen, BoardsModalClose, isModalBoards}) => {
     const history = useHistory().location.pathname
   const handleButtonClick = () => {
     if (history.includes('dashboard')) {
       if (isModalCards) CardsModalClose()
       if (!isModalCards) CardsModalOpen()
+    }
+    if (history === '/home') {
+      if (isModalBoards) BoardsModalClose()
+      if (!isModalBoards) BoardsModalOpen()
     }
   }
 
@@ -33,12 +37,15 @@ const AddButton = ({isModalCards, CardsModalOpen, CardsModalClose}) => {
 const mSTP = state => (
     {
       isModalCards: controllerSelectors.createModalCards(state),
+      isModalBoards: controllerSelectors.createModalBoards(state),
     }
 )
 
 const mDTP = {
   CardsModalOpen: controllerActions.createModalCardsOpen,
   CardsModalClose: controllerActions.createModalCardsCLose,
+  BoardsModalOpen: controllerActions.createModalBoardsOpen,
+  BoardsModalClose: controllerActions.createModalBoardsClose
 }
 
 export default connect(mSTP, mDTP)(AddButton)

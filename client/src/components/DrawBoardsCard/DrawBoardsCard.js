@@ -2,7 +2,7 @@ import React from "react";
 import dataBoardsParse from "../../helpers/dataBoardsParse.helpers";
 import css from './DrawBoardsCard.module.css'
 
-const DrawBoardsCard = ({title, data, _id, handleDelete, handleBoardClick, dateStart, dateEnd}) => {
+const DrawBoardsCard = ({title, data, _id, handleDelete, handleBoardClick, dateStart, dateEnd, type}) => {
   const handleBoardCardClick = e => {
     if (e.target.name === 'click' ||
         e.target.tagName === 'P' ||
@@ -27,17 +27,22 @@ const DrawBoardsCard = ({title, data, _id, handleDelete, handleBoardClick, dateS
                         name='click'
                         onClick={handleBoardCardClick}>
                   <p className={css.title}>{title}</p>
-                  <div className={css.startDateWrapper}>
-                    <p>{startDay.day}</p>
-                    <p>{startDay.month}</p>
-                    <p>{startDay.year}</p>
-                  </div>
-                  <div className={css.horizonLine}/>
-                  <div className={css.endDateWrapper}>
-                    <p>{endDay.day}</p>
-                    <p>{endDay.month}</p>
-                    <p>{endDay.year}</p>
-                  </div>
+                  {type === 'work' && (
+                      <>
+                        <div className={css.startDateWrapper}>
+                          <p>{startDay.day}</p>
+                          <p>{startDay.month}</p>
+                          <p>{startDay.year}</p>
+                        </div>
+                        <div className={css.horizonLine}/>
+                        <div className={css.endDateWrapper}>
+                          <p>{endDay.day}</p>
+                          <p>{endDay.month}</p>
+                          <p>{endDay.year}</p>
+                        </div>
+                      </>
+                  )}
+                  <p className={css.type}>{type}</p>
                 </button>
               </div>
               <div className={css.deleteSide}>

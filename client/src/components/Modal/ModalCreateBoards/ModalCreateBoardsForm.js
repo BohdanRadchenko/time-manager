@@ -1,16 +1,28 @@
 import React, {useState} from "react";
-import ColorRadioButton from "./ColorRadioButton";
-import DatePickerSelect
-  from "../../DatePickerSelect/DatePickerSelect";
 import DateSelector from "../../DateSelector/DateSelector";
+import ColorRadioButton from "./ColorRadioButton";
 import css from './ModalCreateBoardsForm.module.css'
 
 const ModalCreateBoardsForm = ({onCreate, onClose}) => {
-  const defaultForm = {title: '', startValueDay : 0 , startValueMonth : 0}
+  const defaultForm = {
+    title: '',
+    startValueDay: 0,
+    startValueMonth: 0,
+    type : 'work'
+  }
   const [form, setForm] = useState(defaultForm)
 
+  const handleTypeClick = e => {
+    setForm({...form, type : e.target.name})
+  }
+
+
   const getStartDay = value => {
-    setForm({...form, startValueDay: value.day, startValueMonth: value.month })
+    setForm({
+      ...form,
+      startValueDay: value.day,
+      startValueMonth: value.month
+    })
   }
 
   const handleInputChange = e => {
@@ -44,16 +56,33 @@ const ModalCreateBoardsForm = ({onCreate, onClose}) => {
                     type="text"/>
 
                 <div className={css.closeButton}
-                        onClick={onClose}/>
+                     onClick={onClose}/>
               </div>
 
-              <div className={css.datePickerWrapper}>
-                <DatePickerSelect/>
+              <div className={css.typeWrapper}>
+                <button
+                    attr={`${form.type === 'work'}`}
+                    type='button'
+                    name='work'
+                    onClick={e => handleTypeClick(e)}
+                    className={css.typeButton}>
+                  Work
+                </button>
+                <button
+                    attr={`${form.type === 'home'}`}
+                    type='button'
+                    name='home'
+                    onClick={e => handleTypeClick(e)}
+                    className={css.typeButton}>
+                  Home
+                </button>
               </div>
 
-              <div className={css.dateWrapper}>
-                <DateSelector getStartDay={getStartDay}/>
-              </div>
+              {form.type === 'work' && (
+                  <div className={css.dateWrapper}>
+                    <DateSelector getStartDay={getStartDay}/>
+                  </div>
+              )}
             </div>
 
             <div className={css.colorWrapper}>

@@ -1,0 +1,132 @@
+.container {
+    width: 100%;
+}
+
+
+/* CONTROL */
+.controlPanel {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.monthName {
+    width: 100%;
+    color: #026aa7;
+    font-size: 14px;
+    margin: 0 0 4px 0;
+    padding: 0;
+    text-align: center;
+}
+
+.controlButtonPrev {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 50%;
+    height: 16px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.controlButtonNext {
+    composes: controlButtonPrev;
+    left: unset;
+    right: 0;
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.controlButtonOne {
+    width: calc(10% - 1px);
+    transform-origin: top left;
+    transform: rotate(-45deg) translateX(-2px);
+    border: 1px solid #026aa7;
+}
+
+.controlButtonTwo {
+    composes: controlButtonOne;
+    width: 10%;
+    transform: rotate(45deg) translateX(-1px);
+}
+
+
+
+
+
+
+/*DAY LIST*/
+.dayNamesList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: #026aa7;
+}
+
+.dayNamesItem {
+    color: #ffffff;
+    line-height: 2;
+    font-size: 10px;
+    width: 14.28%;
+}
+
+
+/*CALENDAR LIST*/
+.calendarList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.calendarItem {
+    cursor: pointer;
+    color: #026aa7;
+    line-height: 2;
+    font-size: 10px;
+    width: 14.28%;
+}
+
+.calendarItemCurrent {
+    composes: calendarItem;
+    background-color: #026aa7;
+    color: #ffffff;
+    border-radius: 10%;
+}
+
+.notCurrentMonth {
+    composes: calendarItem;
+    color: #C0C0C0;
+}
+
+.currentTime {
+    display: flex;
+    justify-content: center;
+    padding: 4px;
+    width: 100%;
+    opacity: 1;
+    transition: all 0.5s ease-in-out;
+}
+
+.currentTimeOff {
+    composes: currentTime;
+    opacity: 0;
+}
+
+.currentTime p {
+    color: #026aa7;
+    font-weight: 700;
+    margin-right: 4px;
+}
+
+.currentTime p:last-child {
+    margin-right: 0;
+}

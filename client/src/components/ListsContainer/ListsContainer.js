@@ -1,16 +1,18 @@
 import React, {useEffect} from "react";
 import {useHistory} from 'react-router-dom'
 import {connect} from 'react-redux'
+import * as controllerSelectors from '../../redux/controller/controllerSelectors'
 import * as listsOperations from '../../redux/lists/listsOperations'
 import * as listsSelectors from '../../redux/lists/listsSelectors'
 import * as listsActions from '../../redux/lists/listsActions'
 import {DragDropContext} from 'react-beautiful-dnd'
 import DrawLists from "../DrawLists/DrawLists";
 import css from './ListsContainer.module.css'
-import CreateBoardButton
-  from "../Buttons/CreateBoardButton/CreateBoardButton";
+import ModalCreateCards
+  from "../Modal/ModalCreateCards/ModalCreateCards";
 
-const ListsContainer = ({lists, handleDrag, getAllLists, handlePatchList}) => {
+
+const ListsContainer = ({lists, handleDrag, getAllLists, handlePatchList, isModalCreateCards}) => {
   const history = useHistory()
   const boardId = history.location.pathname.split('/')[2]
 
@@ -32,23 +34,27 @@ const ListsContainer = ({lists, handleDrag, getAllLists, handlePatchList}) => {
     handlePatchList(boardId, lists)
   }
   return (
-      <DragDropContext onDragEnd={onDragEnd}>
-        <ul className={css.container}>
-          {lists && lists.map(list => (
-              <li
-                  key={list.id}
-                  className={css.listsContainer}>
-                <DrawLists  {...list}/>
-              </li>
-          ))}
-        </ul>
-      </DragDropContext>
+      <>
+        {isModalCreateCards && <ModalCreateCards/>}
+        <DragDropContext onDragEnd={onDragEnd}>
+          <ul className={css.container}>
+            {lists && lists.map(list => (
+                <li
+                    key={list.id}
+                    className={css.listsContainer}>
+                  <DrawLists  {...list}/>
+                </li>
+            ))}
+          </ul>
+        </DragDropContext>
+      </>
   )
 }
 
 const mSTP = state => (
     {
-      lists: listsSelectors.getLists(state)
+      lists: listsSelectors.getLists(state),
+      isModalCreateCards : controllerSelectors.createModalCards(state)
     }
 )
 

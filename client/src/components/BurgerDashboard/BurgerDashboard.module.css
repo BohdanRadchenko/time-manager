@@ -1,4 +1,14 @@
 .container {
     width: 100%;
     padding: 0 10px;
+    overflow: hidden;
+}
+
+
+.calendarWrapper {
+    margin-bottom: 10px;
+}
+
+.BurgerBoardsListWrapper {
+
 }

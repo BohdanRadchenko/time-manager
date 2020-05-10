@@ -26,6 +26,7 @@ const BoardsList = ({boardsList, getAllBoards, deleteBoard, isModalCreateBoard})
   useEffect(() => {
     getAllBoards()
   }, [getAllBoards])
+
   return (
       <>
         {isModalCreateBoard && <ModalCreateBoards/>}
