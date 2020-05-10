@@ -4,7 +4,6 @@
     cursor: pointer;
     border-radius: 4px;
     background-color: #0079bf;
-    color: #fff;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     transition: all 85ms ease-in-out;
 }
@@ -28,9 +27,124 @@
     left: 0;
 }
 
-.contentWrapper p {
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
-    font-weight: 500;
+/*.contentWrapper p {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    font-size: 16px;*/
+/*    font-weight: 600;*/
+/*    color: #fff;*/
+/*}*/
+
+.contentInner {
+    width: 100%;
+    height: 100%;
+    display: flex;
 }
+
+.mainSide {
+    width: 80%;
+    height: 100%;
+}
+
+.mainSideButton {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.mainSideButton:hover p {
+    font-weight: 700;
+}
+
+.title {
+    width: 100%;
+    font-size: 12px;
+    display: block;
+    font-weight: 600;
+    color: #fff;
+    padding: 0;
+    margin: 0 0 6px 0;
+    text-transform: uppercase;
+}
+
+.startDateWrapper,
+.endDateWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4px;
+}
+
+.startDateWrapper p,
+.endDateWrapper p {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    padding: 0;
+    display: inline-block;
+    margin: 0 10px 0 0;
+}
+.startDateWrapper p:last-child,
+.endDateWrapper p:last-child {
+    margin-right: 0;
+}
+
+.horizonLine {
+    width: 60%;
+    margin: 0 auto 6px auto;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+
+}
+
+/*.startDateWrapper p::after,*/
+/*.endDateWrapper p::after {*/
+/*    content: ' ';*/
+/*}*/
+
+/*.startDateWrapper p:last-child::after,*/
+/*.endDateWrapper p:last-child::after {*/
+/*    content: '';*/
+/*}*/
+
+
+.deleteSide {
+    width: 20%;
+}
+
+.deleteButton {
+    outline: none;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.deleteButton:hover .deleteOne {
+    width: 50%;
+}
+
+.deleteOne {
+    width: 40%;
+    border-radius: 30%;
+    border: 1px solid #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.deleteTwo {
+    composes: deleteOne;
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.mainSideButton:active,
+.deleteButton:active {
+    outline: none;
+}
+
+

@@ -6,22 +6,26 @@ const defaultLists = [
       {
         id: "cards-00",
         title: "cards 0",
-        time: '12'
+        hour: '12',
+        min: '00'
       },
       {
         id: "cards-01",
         title: "cards 1",
-        time: '12'
+        hour: '12',
+        min: '00'
       },
       {
         id: "cards-02",
         title: "cards 2",
-        time: '12'
+        hour: '12',
+        min: '00'
       },
       {
         id: "cards-03",
         title: "cards 3",
-        time: '12'
+        hour: '12',
+        min: '00'
       }
     ]
   },

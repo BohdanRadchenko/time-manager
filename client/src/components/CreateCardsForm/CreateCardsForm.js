@@ -19,7 +19,7 @@ const CreateCardsForm = ({onModalCardsClose, handleCreateCards}) => {
     if (e.target) {
       return setForm({...form, [e.target.name]: e.target.value})
     }
-    if(e.type === 'change') {
+    if (e.type === 'change') {
       return null
     }
     if (e.type) {
@@ -41,6 +41,7 @@ const CreateCardsForm = ({onModalCardsClose, handleCreateCards}) => {
           onSubmit={e => handleSubmit(e)}
           className={css.container}>
         <input className={css.inputText}
+               autoFocus
                type="text" name='title'
                onChange={e => handleChange(e)}
                value={form.title}/>

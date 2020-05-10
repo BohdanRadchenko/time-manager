@@ -42,7 +42,6 @@ export const deleteBoard = id => dispatch => {
   return axios
       .delete(`/boards/${id}`)
       .then(response => {
-        console.log(response.data.boards)
         return dispatch(deleteBoardSuccess(response.data.boards));
       })
       .catch(error => dispatch(deleteBoardError(error)));

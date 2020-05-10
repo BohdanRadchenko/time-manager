@@ -23,6 +23,7 @@ const CreateBoardsForm = ({onBoardsCreate, onBoardsModalClose}) => {
       <div className={css.container}>
         <form onSubmit={handleFormSubmit}>
           <input
+              autoFocus
               value={form.title}
               onChange={handleInputChange}
               type="text"/>

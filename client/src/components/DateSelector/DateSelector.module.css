@@ -1,0 +1,27 @@
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* DAY */
+.dayWrapper {
+    width: 30%;
+}
+
+.selectContainer {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.select-menu {
+    background-color: transparent;
+
+}
+
+.monthWrapper {
+    width: 60%;
+}

@@ -1,7 +1,7 @@
 const {Router} = require('express')
 const Board = require('../models/Board')
 const router = Router()
-const defaultLists = require('../config/lists')
+const defaultLists = require('../helpers/lists')
 
 // /api/v1/boards/create
 router.post('/create', async (req, res) => {

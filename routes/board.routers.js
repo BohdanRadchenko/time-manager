@@ -1,14 +1,23 @@
 const {Router} = require('express')
 const Board = require('../models/Board')
 const router = Router()
-const defaultLists = require('../config/lists')
+const defaultLists = require('../helpers/lists')
+const listsCreate = require('../helpers/listsCreate.helpers')
+const boardsCreate = require('../helpers/boardsCreate.helpers')
 
 // /api/v1/boards/create
 router.post('/create', async (req, res) => {
   try {
     const {title} = req.body
-    console.log(title)
-    const board = new Board({lists: defaultLists, title})
+    const newLists = listsCreate(req.body)
+    const newBoard = boardsCreate('author', title, newLists)
+    console.log(newBoard)
+    const board = new Board({
+      lists: newBoard.lists,
+      title :newBoard.title,
+      dateStart :newBoard.dateStart,
+      dateEnd :newBoard.dateEnd,
+    })
     await board.save()
     const boards = await Board.find()
     res.status(201).json({message: `board - lists - create`, boards})
@@ -46,7 +55,6 @@ router.patch('/patch/:id', async (req, res) => {
     const boardId = req.params.id
     const lists = req.body.lists
     await Board.where({_id: boardId})
-        // .update({lists: lists})
         .updateOne({lists: lists})
     const board = await Board.findById(req.params.id)
     res.status(200).json({message: 'Board upgrade', board})
@@ -59,9 +67,10 @@ router.patch('/patch/:id', async (req, res) => {
 // /api/v1/boards/:id
 router.delete('/:id', async (req, res) => {
   try {
+    console.log('work delete board router delete ')
     await Board.findById(req.params.id).deleteOne()
-    const board = Board.find()
-    res.status(200).json({message: 'delete board by id', board})
+    const boards = await Board.find()
+    res.status(200).json({message: 'delete board by id', boards})
   } catch (e) {
     res.status(500)
         .json({message: `error delete boards by id ${e.message}`})

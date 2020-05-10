@@ -18,6 +18,7 @@ const loadingReducer = (state = false, {type, payload}) => {
         case ActionTypes.SIGN_IN_REQUEST:
         case ActionTypes.SIGN_UP_REQUEST:
         case ActionTypes.BOARDS_REQUEST:
+        case ActionTypes.DELETE_BOARD_REQUEST:
         case ActionTypes.LISTS_REQUEST:
         case ActionTypes.LIST_PATCH_REQUEST:
             return true;
@@ -25,11 +26,13 @@ const loadingReducer = (state = false, {type, payload}) => {
         case ActionTypes.SIGN_IN_SUCCESS:
         case ActionTypes.SIGN_UP_SUCCESS:
         case ActionTypes.BOARDS_SUCCESS:
+        case ActionTypes.DELETE_BOARD_SUCCESS:
         case ActionTypes.LISTS_SUCCESS:
         case ActionTypes.LIST_PATCH_SUCCESS:
         case ActionTypes.SIGN_IN_ERROR:
         case ActionTypes.SIGN_UP_ERROR:
         case ActionTypes.BOARDS_ERROR:
+        case ActionTypes.DELETE_BOARD_ERROR:
         case ActionTypes.LISTS_ERROR:
         case ActionTypes.LIST_PATCH_ERROR:
             return false;

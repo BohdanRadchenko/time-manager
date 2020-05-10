@@ -4,6 +4,7 @@ import { ActionTypes } from '../actionTypes';
 const boardsReducer = (state = {}, { type, payload }) => {
   switch (type) {
     case ActionTypes.BOARDS_SUCCESS:
+    case ActionTypes.DELETE_BOARD_SUCCESS:
       return payload
 
     case ActionTypes.LOGOUT_SUCCESS:

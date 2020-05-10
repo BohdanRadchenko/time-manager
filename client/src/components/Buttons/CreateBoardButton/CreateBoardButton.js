@@ -4,17 +4,16 @@ import * as controllerActions from '../../../redux/controller/controllerActions'
 import css from './CreateBoardButton.module.css'
 
 const CreateBoardButton = ({onCreateModalBoardsOpen}) => {
-  const handleCreateButton = e => {
-    onCreateModalBoardsOpen()
-  }
   return (
       <div className={css.container}>
         <div className={css.containerInner}>
           <div className={css.contentWrapper}>
             <button
-                onClick={handleCreateButton}
-                className={css.deleteButton}>
-              delete
+                onClick={onCreateModalBoardsOpen}
+                className={css.createButton}>
+              Create board
+              {/*<div className={css.createButtonOne}/>*/}
+              {/*<div className={css.createButtonTwo}/>*/}
             </button>
           </div>
         </div>

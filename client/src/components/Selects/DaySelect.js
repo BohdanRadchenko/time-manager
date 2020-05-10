@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Select from 'react-select';
-import selectDay from "../../helpers/selectDay.helpers";
+import {selectWeekDay} from "../../helpers/selectDay.helpers";
 
 const options = [
   {value: 0, label: 'Mon'},
@@ -13,7 +13,7 @@ const options = [
 ];
 
 const DatSelect = ({getChange}) => {
-  const day = selectDay(options)
+  const day = selectWeekDay(options)
   const [selectedOption, setSelectedOption] = useState(day)
 
   useEffect(() => {

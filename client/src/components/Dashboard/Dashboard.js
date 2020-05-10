@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import * as controllerSelectors from '../../redux/controller/controllerSelectors'
 import * as controllerActions from '../../redux/controller/controllerActions'
 import ListsContainer from "../ListsContainer/ListsContainer";
+import BurgerDashboard from "../BurgerDashboard/BurgerDashboard";
 import css from './Dashboard.module.css'
 
 
@@ -12,9 +13,7 @@ const Dashboard = ({burgerMenu}) => {
         <div className={css.dashboardContainer}>
           <div className={burgerMenu ? css.popUpSide : css.popUpSideOff}>
             {burgerMenu && (
-                <p>
-                  pop up
-                </p>
+                <BurgerDashboard/>
             )}
           </div>
           <div className={burgerMenu ? css.mainSideOff : css.mainSide}>

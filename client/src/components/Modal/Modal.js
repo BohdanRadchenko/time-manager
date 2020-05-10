@@ -24,7 +24,6 @@ class Modal extends Component {
   handleKeyPress = e => {
     if (e.code !== 'Escape') return;
     this.props.onCloseModalCards();
-    this.props.onCloseModalBoards();
   };
 
   handleBackdropClick = e => {
@@ -33,47 +32,33 @@ class Modal extends Component {
       return;
     }
     this.props.onCloseModalCards();
-    this.props.onCloseModalBoards();
   };
 
   render() {
-    const {isCreateModalCards, isCreateModalBoards} = this.props
-    if(isCreateModalCards ||  isCreateModalBoards) {
+    const {isCreateModalCards} = this.props
     return (
         <>
+          {isCreateModalCards && (
               <div
                   className={css.backdrop}
                   ref={this.backdropRef}
                   onClick={this.handleBackdropClick}
               >
-                {isCreateModalCards && (
                     <div className={css.modal}>
                       <CreateCardsForm/>
                     </div>
-                )}
-                {isCreateModalBoards && (
-                    <div className={css.modal}>
-                      <CreateBoardsForm/>
-                    </div>
-                )}
               </div>
+          )}
         </>
     )}
-    return null
-  }
 }
 
-const mSTP = state => (
-    {
+const mSTP = state => ({
       isCreateModalCards: controllerSelectors.createModalCards(state),
-      isCreateModalBoards: controllerSelectors.createModalBoards(
-          state)
-    }
-)
+})
 
 const mDTP = {
   onCloseModalCards: controllerActions.createModalCardsCLose,
-  onCloseModalBoards: controllerActions.createModalBoardsClose,
 }
 
 export default connect(mSTP, mDTP)(Modal)
