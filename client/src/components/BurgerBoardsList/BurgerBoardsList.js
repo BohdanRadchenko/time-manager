@@ -1,7 +1,8 @@
 import React from "react";
 import {useHistory} from 'react-router-dom'
 import {connect} from 'react-redux'
-import * as controllerActions from '../../redux/controller/controllerActions'
+import * as controllerActions
+  from '../../redux/controller/controllerActions'
 import * as boardsSelectors from '../../redux/boards/boardsSelectors'
 import dataBoardsParse from "../../helpers/dataBoardsParse.helpers";
 import css from './BurgerBoardsList.module.css'
@@ -23,19 +24,22 @@ const BurgerBoardsList = ({boards, handlerBurger}) => {
                   key={board._id}
                   className={css.boardsItem}>
                 <p className={css.title}>{board.title}</p>
-                <div className={css.dateWrapper}>
-                  <div className={css.startDateWrapper}>
-                    <p>{dataBoardsParse(board.dateStart).day}</p>
-                    <p>{dataBoardsParse(board.dateStart).month}</p>
-                    <p>{dataBoardsParse(board.dateStart).year}</p>
-                  </div>
-                  <div className={css.horizonLine}/>
-                  <div className={css.endDateWrapper}>
-                    <p>{dataBoardsParse(board.dateEnd).day}</p>
-                    <p>{dataBoardsParse(board.dateEnd).month}</p>
-                    <p>{dataBoardsParse(board.dateEnd).year}</p>
-                  </div>
-                </div>
+                {board.type === 'work' && (
+                    <div className={css.dateWrapper}>
+                      <div className={css.startDateWrapper}>
+                        <p>{dataBoardsParse(board.dateStart).day}</p>
+                        <p>{dataBoardsParse(
+                            board.dateStart).month}</p>
+                        <p>{dataBoardsParse(board.dateStart).year}</p>
+                      </div>
+                      <div className={css.horizonLine}/>
+                      <div className={css.endDateWrapper}>
+                        <p>{dataBoardsParse(board.dateEnd).day}</p>
+                        <p>{dataBoardsParse(board.dateEnd).month}</p>
+                        <p>{dataBoardsParse(board.dateEnd).year}</p>
+                      </div>
+                    </div>
+                )}
               </li>
           ))}
         </ul>
@@ -50,7 +54,7 @@ const mSTP = state => (
 )
 
 const mDTP = {
-  handlerBurger : controllerActions.handlerBurger
+  handlerBurger: controllerActions.handlerBurger
 }
 
 export default connect(mSTP, mDTP)(BurgerBoardsList)

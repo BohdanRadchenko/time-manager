@@ -1,4 +1,6 @@
-.container {
+/* ----------------------------------------------------*/
+/*WORK*/
+.containerWork {
     width: 100%;
     list-style: none;
     padding: 10px 4px;
@@ -41,4 +43,38 @@ p {
 
 .listDateWrapper p:last-child:after {
     content: ' ';
+}
+
+
+
+/* ----------------------------------------------------*/
+/*HOME*/
+.containerHome {
+    composes: containerWork;
+    width: 272px;
+}
+
+.titleHomeWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.titleHome {
+    composes: title;
+    cursor: pointer;
+    text-align: left;
+    width: 88%;
+}
+
+.titleHome[disabled] {
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.titleHome:hover {}
+
+.submitTitleButton {
+    width: 10%;
 }
