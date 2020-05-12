@@ -1,7 +1,6 @@
 const {Router} = require('express')
 const Board = require('../models/Board')
 const router = Router()
-const defaultLists = require('../helpers/lists')
 const listsCreate = require('../helpers/listsCreate.helpers')
 const boardsCreate = require('../helpers/boardsCreate.helpers')
 
