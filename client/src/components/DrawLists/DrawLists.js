@@ -1,11 +1,19 @@
 import React, {useState} from "react";
+import {connect} from 'react-redux'
+import * as listsOperations from '../../redux/lists/listsOperations'
 import {Droppable} from "react-beautiful-dnd"
 import dataListsParse from '../../helpers/dataListsParse.helpers'
 import DrawCard from "../DrawCard/DrawCard";
-import css from './DrawLists.module.css'
-import AddTrelloCard from "../Buttons/AddTrelloCard/AddTrelloCard";
+import AddActionButton
+  from "../Buttons/AddActionButton/AddActionButton";
+import HighlightOffOutlinedIcon
+  from '@material-ui/icons/HighlightOffOutlined';
+import CheckCircleOutlineOutlinedIcon
+  from '@material-ui/icons/CheckCircleOutlineOutlined';
 
-const DrawLists = ({id, title, cards, date, type}) => {
+import css from './DrawLists.module.css'
+
+const DrawLists = ({id, title, cards, date, type, boardId, handleChangeListTitle, onDeleteList, onDeleteCard, deleteOn}) => {
   const listDate = dataListsParse(date)
 
   const [inputTitle, setInputTitle] = useState(title)
@@ -13,11 +21,6 @@ const DrawLists = ({id, title, cards, date, type}) => {
 
   const handleInputTitleClick = e => {
     setDisabledTitleInput(false)
-    console.dir(e.target)
-    console.log(e.target)
-    e.target.focus()
-    // console.log(e.target.querySelector('input'))
-    // e.target.querySelector('input').focus()
   }
 
   const handleInputTitleChange = e => {
@@ -26,8 +29,20 @@ const DrawLists = ({id, title, cards, date, type}) => {
 
   const handleFormTitleSubmit = e => {
     e.preventDefault()
-    console.log('e handleFormTitleSubmit')
+    const form = {listId: id, boardId, title: inputTitle}
+    handleChangeListTitle(form)
     setDisabledTitleInput(true)
+    e.target.querySelector('input').blur()
+  }
+
+  const handleDeleteList = e => {
+    const form = {listId: id, boardId}
+    onDeleteList(form)
+  }
+
+  const handleDeleteCard = cardId => {
+    const form = {listId: id, boardId, cardId}
+    onDeleteCard(form)
   }
 
 
@@ -65,39 +80,53 @@ const DrawLists = ({id, title, cards, date, type}) => {
               {type === 'home' && (
                   <>
                     <li className={css.listContainer} key={id}>
-                      {/*<p className={css.titleHome}>{title}</p>*/}
-                      <form onSubmit={e => handleFormTitleSubmit(e)}>
+                      <form
+                          className={css.homeForm}
+                          onSubmit={e => handleFormTitleSubmit(e)}>
                         <div
                             onClick={handleInputTitleClick}
                             className={css.titleHomeWrapper}>
                           <input
-                              autoFocus
-                              disabled={disabledTitleInput}
+                              // disabled={disabledTitleInput}
                               value={inputTitle}
                               onChange={e => handleInputTitleChange(
                                   e)}
-                              className={css.titleHome}/>
-                          {/*<input type="submit"/>*/}
+                              className={disabledTitleInput
+                                  ? css.disabledTitleHome
+                                  : css.titleHome}/>
                           {!disabledTitleInput && (
                               <button
                                   className={css.submitTitleButton}
-                                  type='submit'/>
+                                  type='submit'>
+                                <CheckCircleOutlineOutlinedIcon
+                                    style={{color: '#5aac44'}}/>
+                              </button>
                           )}
                         </div>
+                        {disabledTitleInput && deleteOn && (
+                            <button type='button'
+                                    onClick={e => handleDeleteList(
+                                        e)}
+                                    className={css.deleteListsButton}>
+                              <HighlightOffOutlinedIcon
+                                  style={{color: '#172b4d'}}/>
+                            </button>
+                        )}
                       </form>
                     </li>
 
                     {cards && cards.map((card, index) => (
                         <li key={card.id}>
-                          <DrawCard {...card} index={index}/>
+                          <DrawCard {...card} index={index} homeType
+                                    handleDeleteCard={handleDeleteCard}/>
                         </li>
                     ))}
 
-                    <li className={css.addTrelloCardWrapper}>
-                      <AddTrelloCard/>
-                    </li>
-
                     {provided.placeholder}
+
+                    <li className={css.addActionButtonWrapper}>
+                      <AddActionButton boardId={boardId} listId={id}/>
+                    </li>
                   </>
               )}
             </ul>
@@ -106,4 +135,10 @@ const DrawLists = ({id, title, cards, date, type}) => {
   )
 }
 
-export default DrawLists
+const mDTP = {
+  handleChangeListTitle: listsOperations.handleChangeHomeListsTitle,
+  onDeleteList: listsOperations.handleDeleteHomeList,
+  onDeleteCard: listsOperations.handleDeleteHomeCard,
+}
+
+export default connect(null, mDTP)(DrawLists)

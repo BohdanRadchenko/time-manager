@@ -25,12 +25,10 @@ router.post('/register',
         const {email, name, password, passwordAgain} = req.body
         const candidate = await User.findOne({email})
         if (candidate) {
-          console.log({message: 'User already exist'})
           return res.status(400).json({message: 'User already exist'},)
           return res.json({error: 'User already exist'})
         }
         if (password !== passwordAgain) {
-          console.log({message: "Incorrect password"})
           return res.status(400).json({message: "Incorrect password"})
         }
         const hashedPassword = await bcrypt.hash(password, 12)
@@ -43,7 +41,6 @@ router.post('/register',
             config.get('jwtSecret'),
             {expiresIn: '24h'}
         )
-        console.log({message: `User - ${email} - has been created`})
         res.status(201).json({
           token,
           userData: {id: newUser._id, name: newUser.name, email: newUser.email},
@@ -63,7 +60,6 @@ router.post(
     ],
     async (req, res) => {
       try {
-        console.log(req.user)
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
           return res.status(400).json({
@@ -74,12 +70,10 @@ router.post(
         const {email, password} = req.body
         const user = await User.findOne({email})
         if (!user) {
-          console.log({message: 'User not found'})
           return res.status(400).json({message: 'User not found'})
         }
         const isMatch = await bcrypt.compare(password, user.password)
         if (!isMatch) {
-          console.log({message: 'Incorrect password'})
           return res.status(400).json({message: 'Incorrect password'})
         }
         const token = jwt.sign(
@@ -87,8 +81,6 @@ router.post(
             config.get('jwtSecret'),
             {expiresIn: '24h'}
         )
-        console.log(user)
-        console.log({message: `correct login ${email}`})
         res.json({token, userData: {id: user._id, name: user.name, email: user.email}})
       } catch (e) {
         res.status(500).json({message: `error post login ${e.message}`})

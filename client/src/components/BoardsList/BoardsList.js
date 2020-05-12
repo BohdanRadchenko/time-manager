@@ -4,15 +4,17 @@ import {connect} from 'react-redux'
 import * as boardsSelectors from '../../redux/boards/boardsSelectors'
 import * as boardsOperations
   from '../../redux/boards/boardsOperations'
-import * as controllerSelectors from '../../redux/controller/controllerSelectors'
+import * as controllerSelectors
+  from '../../redux/controller/controllerSelectors'
 import DrawBoardsCard from "../DrawBoardsCard/DrawBoardsCard";
 import CreateBoardButton
   from "../Buttons/CreateBoardButton/CreateBoardButton";
 import ModalCreateBoards
   from "../Modal/ModalCreateBoards/ModalCreateBoards";
+import {Loaders} from "../Loaders";
 import css from './BoardsList.module.css'
 
-const BoardsList = ({boardsList, getAllBoards, deleteBoard, isModalCreateBoard}) => {
+const BoardsList = ({boardsList, getAllBoards, deleteBoard, isModalCreateBoard, loading}) => {
   const history = useHistory()
 
   const handleDelete = id => {
@@ -26,6 +28,10 @@ const BoardsList = ({boardsList, getAllBoards, deleteBoard, isModalCreateBoard})
   useEffect(() => {
     getAllBoards()
   }, [getAllBoards])
+
+  if (loading) {
+    return <Loaders/>
+  }
 
   return (
       <>
@@ -52,7 +58,9 @@ const BoardsList = ({boardsList, getAllBoards, deleteBoard, isModalCreateBoard})
 const mSTP = state => (
     {
       boardsList: boardsSelectors.getBoards(state),
-      isModalCreateBoard : controllerSelectors.createModalBoards(state)
+      isModalCreateBoard: controllerSelectors.createModalBoards(
+          state),
+      loading: controllerSelectors.loading(state)
     }
 )
 

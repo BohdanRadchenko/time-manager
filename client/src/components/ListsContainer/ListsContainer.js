@@ -1,20 +1,33 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {useHistory} from 'react-router-dom'
 import {connect} from 'react-redux'
-import * as controllerSelectors from '../../redux/controller/controllerSelectors'
+import * as controllerSelectors
+  from '../../redux/controller/controllerSelectors'
 import * as listsOperations from '../../redux/lists/listsOperations'
 import * as listsSelectors from '../../redux/lists/listsSelectors'
 import * as listsActions from '../../redux/lists/listsActions'
 import {DragDropContext} from 'react-beautiful-dnd'
 import DrawLists from "../DrawLists/DrawLists";
-import css from './ListsContainer.module.css'
 import ModalCreateCards
   from "../Modal/ModalCreateCards/ModalCreateCards";
+import AddActionButton
+  from "../Buttons/AddActionButton/AddActionButton";
+import css from './ListsContainer.module.css'
 
 
 const ListsContainer = ({lists, handleDrag, getAllLists, handlePatchList, isModalCreateCards}) => {
   const history = useHistory()
   const boardId = history.location.pathname.split('/')[2]
+  const [deleteOn, setDeleteOn] = useState(true)
+
+  useEffect(() => {
+    if(lists.length <= 1) {
+      setDeleteOn(false)
+    }
+    if(lists.length > 1) {
+      setDeleteOn(true)
+    }
+  }, [setDeleteOn, lists.length])
 
   useEffect(() => {
     getAllLists(boardId)
@@ -33,18 +46,36 @@ const ListsContainer = ({lists, handleDrag, getAllLists, handlePatchList, isModa
     )
     handlePatchList(boardId, lists)
   }
+
   return (
       <>
         {isModalCreateCards && <ModalCreateCards/>}
         <DragDropContext onDragEnd={onDragEnd}>
-          <ul className={css.container}>
-            {lists && lists.map(list => (
-                <li
-                    key={list.id}
-                    className={css.listsContainer}>
-                  <DrawLists  {...list}/>
-                </li>
-            ))}
+          <ul className={lists.type === 'work'
+              ? css.container
+              : css.containerHome
+          }>
+            <>
+              {lists && lists.map(list => (
+                  <li
+                      key={list.id}
+                      className={lists.type === 'work'
+                          ? css.listsContainer
+                          : css.listsContainerHome
+                      }>
+                    <DrawLists  {...list} boardId={boardId} deleteOn={deleteOn}/>
+                  </li>
+              ))}
+              {!!lists.length && (
+                  lists[0].type === 'home'
+              ) && (
+                  <li
+                      className={css.listsContainerHome}
+                      key={'list_create'}>
+                    <AddActionButton typeList boardId={boardId}/>
+                  </li>
+              )}
+            </>
           </ul>
         </DragDropContext>
       </>
@@ -54,7 +85,7 @@ const ListsContainer = ({lists, handleDrag, getAllLists, handlePatchList, isModa
 const mSTP = state => (
     {
       lists: listsSelectors.getLists(state),
-      isModalCreateCards : controllerSelectors.createModalCards(state)
+      isModalCreateCards: controllerSelectors.createModalCards(state),
     }
 )
 

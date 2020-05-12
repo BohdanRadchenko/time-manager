@@ -39,7 +39,8 @@ const lists = (state = [], {type, payload}) => {
         const card = listStart.cards.splice(droppableIndexStart, 1);
         const listEnd = state.find(el => el.id === droppableIdEnd);
         listEnd.cards.splice(droppableIndexEnd, 0, ...card);
-        const newState = state.map(el => {
+        // const newState = state.map(el => {
+        state.map(el => {
           if (el.id === droppableIdStart) {
             return listStart
           }

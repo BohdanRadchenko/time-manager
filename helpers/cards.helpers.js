@@ -9,7 +9,6 @@ const createCard = (lists, card) => {
     }
     return list
   })
-  console.log(result)
   return result
 }
 

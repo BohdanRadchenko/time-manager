@@ -67,7 +67,6 @@ router.patch('/patch/:id', async (req, res) => {
 // /api/v1/boards/:id
 router.delete('/:id', async (req, res) => {
   try {
-    console.log('work delete board router delete ')
     await Board.findById(req.params.id).deleteOne()
     const boards = await Board.find()
     res.status(200).json({message: 'delete board by id', boards})

@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 import * as sessionSelectors from '../redux/session/sessionSelectors'
 import * as sessionOperations
   from '../redux/session/sessionOperations'
-import Modal from './Modal/Modal'
 import {useRoutes} from "../routes";
 import {Loaders} from "./Loaders";
 
@@ -15,7 +14,6 @@ const App = ({isAuthentication, login}) => {
       <Suspense fallback={<Loaders/>}>
         <Router basename='/'>
           {routes}
-          {/*<Modal/>*/}
         </Router>
       </Suspense>
   );

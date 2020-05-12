@@ -36,4 +36,5 @@ const error = (state = null, { type, payload }) => {
 
 export default combineReducers({
   boards : boardsReducer,
+  error,
 });

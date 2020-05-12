@@ -1,8 +1,5 @@
 import axios from 'axios';
 import {
-  boardsAllError,
-  boardsAllRequest,
-  boardsAllSuccess,
   boardsError,
   boardsRequest,
   boardsSuccess,
@@ -13,13 +10,13 @@ import {
 
 axios.defaults.baseURL = '/api/v1/';
 
-const setAuthToken = token => {
-  axios.defaults.headers.common.Authorization = token;
-};
-
-const clearAuthToken = () => {
-  axios.defaults.headers.common.Authorization = null;
-};
+// const setAuthToken = token => {
+//   axios.defaults.headers.common.Authorization = token;
+// };
+//
+// const clearAuthToken = () => {
+//   axios.defaults.headers.common.Authorization = null;
+// };
 
 
 export const boardsCreate = credentials => dispatch => {

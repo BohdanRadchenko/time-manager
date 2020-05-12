@@ -1,13 +1,26 @@
 .container {
     list-style: none;
     width: 99%;
-    /*height: 100vh;*/
     margin: 0 auto;
     padding: 0;
     display: flex;
     justify-content: space-between;
+    height: calc(100vh - 64px);
+}
+
+.containerHome {
+    composes: container;
+    justify-content: flex-start;
+    display: flex;
+    overflow-x: auto;
 }
 
 .listsContainer {
     width: 14%;
+}
+
+.listsContainerHome {
+    min-width: 272px;
+    width: 272px;
+    margin-right: 12px;
 }

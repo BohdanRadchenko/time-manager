@@ -14,13 +14,13 @@ import {
 
 axios.defaults.baseURL = '/api/v1';
 
-const setAuthToken = token => {
-  axios.defaults.headers.common.Authorization = token;
-};
+// const setAuthToken = token => {
+//   axios.defaults.headers.common.Authorization = token;
+// };
 
-const clearAuthToken = () => {
-  axios.defaults.headers.common.Authorization = null;
-};
+// const clearAuthToken = () => {
+//   axios.defaults.headers.common.Authorization = null;
+// };
 
 export const listsHandler = id => dispatch => {
   dispatch(listsRequest());
@@ -45,11 +45,60 @@ export const handlePatchList = (id, lists) => dispatch => {
       .catch(error => dispatch(listPatchError(error)));
 };
 
-
 export const handleCreateCards = (id, card) => dispatch => {
   dispatch(createCardRequest());
   return axios
       .post(`/cards/create`, {id, card})
+      .then(response => {
+        return dispatch(createCardSuccess(response.data.board.lists));
+      })
+      .catch(error => dispatch(createCardError(error)));
+};
+
+export const handleCreateHomeCards = card => dispatch => {
+  dispatch(createCardRequest());
+  return axios
+      .post(`/cards/home/create`, {card})
+      .then(response => {
+        return dispatch(createCardSuccess(response.data.board.lists));
+      })
+      .catch(error => dispatch(createCardError(error)));
+};
+
+export const handleCreateHomeLists = card => dispatch => {
+  dispatch(createCardRequest());
+  return axios
+      .post(`/lists/home/create`, {card})
+      .then(response => {
+        return dispatch(createCardSuccess(response.data.board.lists));
+      })
+      .catch(error => dispatch(createCardError(error)));
+};
+
+export const handleChangeHomeListsTitle = form => dispatch => {
+  dispatch(createCardRequest());
+  return axios
+      .post(`/lists/home/update`, {form})
+      .then(response => {
+        return dispatch(createCardSuccess(response.data.board.lists));
+      })
+      .catch(error => dispatch(createCardError(error)));
+};
+
+export const handleDeleteHomeList = form => dispatch => {
+  dispatch(createCardRequest());
+  return axios
+      .post(`/lists/home/delete`, {form})
+      .then(response => {
+        return dispatch(createCardSuccess(response.data.board.lists));
+      })
+      .catch(error => dispatch(createCardError(error)));
+};
+
+export const handleDeleteHomeCard = form => dispatch => {
+  dispatch(createCardRequest());
+  return axios
+      .post('/cards/home/delete', {form})
       .then(response => {
         return dispatch(createCardSuccess(response.data.board.lists));
       })

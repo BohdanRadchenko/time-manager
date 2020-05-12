@@ -6,12 +6,9 @@ import {
   signInRequest,
   signInSuccesss,
   signInError,
-  refreshUserRequest,
   logOutRequest,
   logOutSuccess,
   logOutError,
-  refreshUserSuccess,
-  refreshUserError,
 } from './sessionActions';
 import {getToken} from './sessionSelectors';
 import {addLocalStorage} from '../../helpers/localStorage.helpers'

@@ -17,7 +17,6 @@ router.post('/user', async (req, res) => {
 
 router.get('/user', async (req, res) => {
         try {
-            console.log('get')
             const user = await User.find()
             res.status(200).json(user)
         } catch (e) {

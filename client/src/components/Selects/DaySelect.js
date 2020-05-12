@@ -18,7 +18,7 @@ const DatSelect = ({getChange}) => {
 
   useEffect(() => {
     getChange({...selectedOption, type: 'day'})
-  }, [selectedOption])
+  }, [selectedOption, getChange])
 
 
   const handleChange = value => {

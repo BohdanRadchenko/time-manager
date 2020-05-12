@@ -1,18 +1,20 @@
+const shortid = require('shortid')
+
 const boardsCreate = (author, title, newLists, type) => {
   const data = {
     title,
+    author,
+    type,
     dateStart : newLists.find(el => el.id === 'list-0').date,
     dateEnd : newLists.find(el => el.id === 'list-6').date,
-    author,
     lists : type === 'work' ? newLists : [
       {
-        id: `list-0`,
+        id: shortid.generate(),
         type,
-        title: title,
+        title: 'New lists...',
         cards: [],
       }
-      ],
-    type
+      ]
   }
 
   return data

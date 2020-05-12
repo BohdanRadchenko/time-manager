@@ -27,7 +27,6 @@ const CreateCardsForm = ({onModalCardsClose, handleCreateCards}) => {
     }
   }
 
-  console.log('form', form)
 
   const handleSubmit = e => {
     e.preventDefault()

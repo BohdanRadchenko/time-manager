@@ -17,7 +17,7 @@ const DateSelector = ({getStartDay}) => {
   useEffect(() => {
     const value = {day : daySelector.value, month: monthSelector.value}
     getStartDay(value)
-  }, [daySelector, monthSelector])
+  }, [daySelector.value, getStartDay, monthSelector.value])
 
   const handleChange = value => {
     if (value.type === 'day') {
