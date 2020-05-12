@@ -47,11 +47,13 @@ const ListsContainer = ({lists, handleDrag, getAllLists, handlePatchList, isModa
     handlePatchList(boardId, lists)
   }
 
+  console.log('lists)', lists)
+
   return (
       <>
         {isModalCreateCards && <ModalCreateCards/>}
         <DragDropContext onDragEnd={onDragEnd}>
-          <ul className={lists.type === 'work'
+          <ul className={!!lists.length && lists[0].type === 'work'
               ? css.container
               : css.containerHome
           }>
@@ -59,7 +61,7 @@ const ListsContainer = ({lists, handleDrag, getAllLists, handlePatchList, isModa
               {lists && lists.map(list => (
                   <li
                       key={list.id}
-                      className={lists.type === 'work'
+                      className={list.type === 'work'
                           ? css.listsContainer
                           : css.listsContainerHome
                       }>
