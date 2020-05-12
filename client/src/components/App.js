@@ -4,10 +4,10 @@ import {connect} from 'react-redux'
 import * as sessionSelectors from '../redux/session/sessionSelectors'
 import * as sessionOperations
   from '../redux/session/sessionOperations'
+import {Loaders} from "./Loaders"
 import {useRoutes} from "../routes";
-import {Loaders} from "./Loaders";
 
-const App = ({isAuthentication, login}) => {
+const App = ({isAuthentication}) => {
   const routes = useRoutes(isAuthentication)
 
   return (

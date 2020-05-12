@@ -11,7 +11,6 @@ import CreateBoardButton
   from "../Buttons/CreateBoardButton/CreateBoardButton";
 import ModalCreateBoards
   from "../Modal/ModalCreateBoards/ModalCreateBoards";
-import {Loaders} from "../Loaders";
 import css from './BoardsList.module.css'
 
 const BoardsList = ({boardsList, getAllBoards, deleteBoard, isModalCreateBoard, loading}) => {
@@ -28,10 +27,6 @@ const BoardsList = ({boardsList, getAllBoards, deleteBoard, isModalCreateBoard, 
   useEffect(() => {
     getAllBoards()
   }, [getAllBoards])
-
-  if (loading) {
-    return <Loaders/>
-  }
 
   return (
       <>

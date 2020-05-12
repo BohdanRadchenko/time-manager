@@ -12,9 +12,7 @@ const ProfileUserButton = ({user}) => {
   const name = splitName(user.name)
 
   const handleButtonClick = e => {
-    if(backdropRef) {
-      return null
-    }
+
     if (!profileBar) {
       window.addEventListener('keydown',
           handleKeyPress)
